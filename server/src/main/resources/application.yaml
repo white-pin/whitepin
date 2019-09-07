@@ -1,0 +1,19 @@
+# Common properties
+
+
+---
+# local profile
+spring:
+  profiles: local
+
+server:
+  port: 3030
+
+
+---
+# dev profile
+spring:
+  profiles: dev
+
+server:
+  port: 13030
