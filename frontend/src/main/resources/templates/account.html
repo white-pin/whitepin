@@ -1,0 +1,453 @@
+<!-- Modifications Copyright 2019 The whitepin Authors -->
+<!--
+=========================================================
+ Light Bootstrap Dashboard - v2.0.1
+=========================================================
+
+ Product Page: https://www.creative-tim.com/product/light-bootstrap-dashboard
+ Copyright 2019 Creative Tim (https://www.creative-tim.com)
+ Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE)
+
+ Coded by Creative Tim
+
+=========================================================
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>WHITE PIN PROJECT</title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+  <!-- CSS Files -->
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="/assets/css/demo.css" rel="stylesheet" />
+  <style>
+    .btn {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!--<div class="sidebar" data-image="assets/img/sidebar-5.jpg">-->
+  <div class="sidebar" data-color="purple">
+    <!--
+Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+Tip 2: you can also add an image using data-image tag
+-->
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <a href="/" class="simple-text">
+          <i class="nc-icon nc-layers-3"></i>&nbsp;&nbsp;WHITE PIN
+        </a>
+      </div>
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="nc-icon nc-atom"></i>
+            <p>화이트핀 소개</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/edit">
+            <i class="nc-icon nc-circle-09"></i>
+            <p>화이트핀 발급/관리</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/notification">
+            <i class="nc-icon nc-bell-55"></i>
+            <p>공지사항</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img style="height: 10%;" src="../img/whitepin-logo-small.png"></a>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+          <ul class="nav navbar-nav mr-auto" style="padding-left: 50px;">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <input type="text" class="form-control col-md-12" placeholder="아이디 검색으로 거래내역/평가 조회">
+                &nbsp;&nbsp;<i class="nc-icon nc-zoom-split"></i>
+              </a>
+            </li>
+          </ul>
+
+          <!-- navbar right -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/login">
+                <span class="no-icon">로그인</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="/accounts/edit">
+                <span class="no-icon">내 거래내역/평가</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">
+                <span class="no-icon">로그아웃</span>
+              </a>
+            </li>
+          </ul> <!-- ./navbar right -->
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h4 class="card-title">거래내역/평가 조회</h4>
+                  </div>
+                  <div class="col-md-2">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <span>
+                      내가 받은 점수
+                    </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <a class="dropdown-item" href="#">내가 받은 점수</a>
+                      <a class="dropdown-item" href="#">내가 남긴 점수</a>
+                    </ul>
+                  </div>
+                </div>
+                <hr>
+              </div>
+              <div class="card-body">
+                <!-- 거래내역 평가 조회 -->
+                <div class="row" style="padding-left: 10px;">
+                  <!-- 좌측 평가 요약 정보 -->
+                  <div class="col-md-6">
+                    <div class="row">
+                      &nbsp;&nbsp;<i class="nc-icon nc-circle-09"></i>&nbsp;&nbsp;
+                      <p>0xbe0eb53f46cd790cd13851d5eff43d12404d33e8</p>
+                    </div>
+
+                    <div class="row">
+                      <table class="table">
+                        <thead>
+                        <tr>
+                          <th scope="col">구분</th>
+                          <th scope="col">A항목 평균</th>
+                          <th scope="col">B항목 평균</th>
+                          <th scope="col">C항목 평균</th>
+                          <th scope="col">전체 평균</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <th scope="row" style="background-color: #1F77D0">구매점수</th>
+                          <td>☆ 4.2</td>
+                          <td>☆ 2.5</td>
+                          <td>☆ 2.1</td>
+                          <td>☆ 2.9</td>
+                        </tr>
+                        <tr>
+                          <th scope="row" style="background-color: #FFC107">판매점수</th>
+                          <td>☆ 4.0</td>
+                          <td>☆ 2.2</td>
+                          <td>☆ 2.4</td>
+                          <td>☆ 2.8</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">합계</th>
+                          <td>☆ 4.1</td>
+                          <td>☆ 2.3</td>
+                          <td>☆ 2.2</td>
+                          <td>☆ 2.8</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div><!-- ./ 좌측 평가 요약 정보 -->
+
+                  <!-- 우측 평가 -->
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h5 style="text-decoration: underline;">A 거래안정성</h5>
+                        <label>
+                          거래는 명시된대로 <br />
+                          잘 진행 되었습니까?
+                        </label>
+                      </div>
+                      <div class="col-md-8">
+                        <div id="chartActivity1" class=""></div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h5 style="text-decoration: underline;">B 서비스/태도</h5>
+                        <label>
+                          거래를 진행하는데 상대방의 태도가 <br />
+                          우수했습니까?
+                        </label>
+                      </div>
+                      <div class="col-md-8">
+                        <div id="chartActivity2" class=""></div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h5 style="text-decoration: underline;">C 재거래의지</h5>
+                        <label>
+                          필요하다면 같거나 비슷한 상품에 대해<br />
+                          상대방과 다시 거래하실 의향이 있으십니까?
+                        </label>
+                      </div>
+                      <div class="col-md-8">
+                        <div id="chartActivity3" class=""></div>
+                      </div>
+                    </div>
+                  </div><!-- ./우측 평가 -->
+                </div> <!-- ./거래내역 평가 조회 -->
+
+                <hr />
+                <!-- 거래 및 평가내역 -->
+                <div class="row" style="padding-left: 20px;">
+                  &nbsp;&nbsp;<i class="nc-icon nc-satisfied"></i>&nbsp;&nbsp;
+                  <p>거래 및 평가내역(아이콘 찾아야함)</p>
+                </div>
+
+                <div class="row" style="padding-left: 20px;">
+                  <div class="col-md-4">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-secondary btn-search"
+                              data-type="all">전체
+                      </button>
+                      <button type="button" class="btn btn-secondary btn-search"
+                              data-type="purchase">구매점수
+                      </button>
+                      <button type="button" class="btn btn-secondary btn-search"
+                              data-type="sell">판매점수
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+
+                  </div>
+                  <div class="col-md-4">
+                    이미지 추가 + 괜찮은 거래상대 입니다.
+                  </div>
+                </div>
+
+                <br />
+                <div class="row" style="padding-left: 20px;">
+                  <p>전체 거래 내역 <strong>154건</strong></p>
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th scope="col" rowspan="2">구분</th>
+                      <th scope="col" rowspan="2">거래내역</th>
+                      <th scope="col" rowspan="2">거래상대</th>
+                      <th scope="col" rowspan="1" colspan="3">평가점수</th>
+                      <th scope="col" rowspan="2">평가 날짜</th>
+                      <th scope="col" rowspan="2">서비스</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">A</th>
+                      <th scope="col">B</th>
+                      <th scope="col">C</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td scope="row" style="background-color: #1F77D0">구매점수</td>
+                      <td>0x11c74b67f08252162e14…</td>
+                      <td>0x9d86863c224cfba670e25…</td>
+                      <td>2.2</td>
+                      <td>2.5</td>
+                      <td>3.3</td>
+                      <td>2019-06-01</td>
+                      <td>에어비앤비</td>
+                    </tr>
+                    <tr>
+                      <td scope="row" style="background-color: #FFC107">판매점수</td>
+                      <td>0xddb30e27c5d7ad59f3bf…</td>
+                      <td>0x182187ec44f64c04b7412…</td>
+                      <td>4.5</td>
+                      <td>3.2</td>
+                      <td>2.2</td>
+                      <td>2019-06-01</td>
+                      <td>번개장터</td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                      </li>
+                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+
+                <!-- ./거래 및 평가내역 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container-fluid">
+        <nav>
+          <p class="copyright">
+            &copy;
+            <script>document.write(new Date().getFullYear())</script>
+            <a href="https://github.com/white-pin">white pin project</a>
+          </p>
+        </nav>
+      </div>
+    </footer>
+  </div>
+</div>
+</body>
+<!--   Core JS Files   -->
+<script src="/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="/assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Chartist Plugin  -->
+<script src="/assets/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="/assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+<script src="/assets/js/demo.js"></script>
+
+<script type="text/javascript">
+  // https://gionkunz.github.io/chartist-js/api-documentation.html
+  function drawBarChart(targetId, data) {
+    var options = {
+      seriesBarDistance: 220,
+      axisX: {
+        showGrid: false
+      },
+      height: "110px",
+      high: 5,
+      low: 0,
+      chartPadding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      }
+    };
+
+    var responsiveOptions = [
+      ['screen and (max-width: 640px)', {
+        seriesBarDistance: 5,
+        axisX: {
+          labelInterpolationFnc: function (value) {
+            return value[0];
+          }
+        }
+      }]
+    ];
+
+    Chartist.Bar(targetId, data, options, responsiveOptions);
+  }
+
+  var currentSearchType = '';
+
+  function searchScores(searchType) {
+    console.log('current : ', currentSearchType, ", search : ", searchType);
+    // search score
+    if (currentSearchType == searchType) {
+      return;
+    }
+
+    $('.btn-search').each(function () {
+      if ($(this).data('type') === searchType) {
+        $(this).addClass('btn-fill');
+      } else {
+        $(this).removeClass('btn-fill');
+      }
+    });
+
+    currentSearchType = searchType;
+  }
+
+  $(document).ready(function () {
+    /**
+     * draw charts
+     */
+    var data1 = {
+      labels: ['유저', '전체'],
+      series: [
+        [4.1], [3.8]
+      ]
+    };
+    drawBarChart('#chartActivity1', data1);
+
+    var data2 = {
+      labels: ['유저', '전체'],
+      series: [
+        [2.3], [3.5]
+      ]
+    };
+    drawBarChart('#chartActivity2', data2);
+
+    var data3 = {
+      labels: ['유저', '전체'],
+      series: [
+        [2.2], [3.3]
+      ]
+    };
+    drawBarChart('#chartActivity3', data3);
+
+    $('.btn-search').on('click', function (e) {
+      var searchType = $(this).data('type');
+      searchScores(searchType);
+      alert('search : ' + searchType);
+    });
+
+    /**
+     * draw scores
+     */
+    searchScores('all');
+  });
+</script>
+
+</html>
