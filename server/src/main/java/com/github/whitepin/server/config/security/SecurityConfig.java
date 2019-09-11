@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private MatchersSecurityConfiguration matchersSecurityConfiguration;
 
     private static final String[] AUTH_WHITELIST_SPRINGFOX = {
+            "/join",
             // -- swagger ui
             "/swagger-resources/**",
             "/swagger-ui.html",
@@ -67,11 +68,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                // admin / adminpw
 //                .withUser("admin").password("$2a$10$Q8cgIoqLvufVIkYZLzfi7O6rRi9eNn2/18APAmzRbW9rsA921MJuG").roles("user", "admin");
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
 }

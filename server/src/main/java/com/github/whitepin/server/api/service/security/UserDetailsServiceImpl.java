@@ -1,4 +1,4 @@
-package com.github.whitepin.server.config.security;
+package com.github.whitepin.server.api.service.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class UserDetailsImpl implements UserDetails {
+public class UserDetailsServiceImpl implements UserDetails {
 
     private Collection<SimpleGrantedAuthority> authorities;
     private String username;

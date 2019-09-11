@@ -17,32 +17,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @Builder
 @ToString
-@XmlRootElement(name="join")
+@XmlRootElement(name="user")
 @XmlAccessorType(XmlAccessType.FIELD)
-@ApiModel(description = "Join user")
-public class JoinDTO {
+@ApiModel(description = "user")
+public class UserDTO {
 
-    @NotNull
-    @NotBlank
     @ApiModelProperty(notes = "user name")
     String name;
 
-    @Email()
     @ApiModelProperty(notes = "user email")
     String email;
-
-    @ApiModelProperty(notes = "user password")
-    String password;
-
-    @ApiModelProperty(notes = "user rePassword")
-    String rePassword;
 
     @ApiModelProperty(notes = "user phoneNumber")
     String phoneNumber;
 
-    @ApiModelProperty(notes = "user ci")
-    String ci;
+    @ApiModelProperty(notes = "user userToken")
+    String userToken;
 
-    @ApiModelProperty(notes = "user di")
-    String di;
 }

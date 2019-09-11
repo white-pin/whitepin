@@ -4,6 +4,7 @@ INSERT INTO wp_user ( ci
                     , email
                     , name
                     , password
+                    , user_token
                     , phone_number
                     , use_yn)
 VALUES ( 'ci'
@@ -11,6 +12,7 @@ VALUES ( 'ci'
        , 'admin'
        , 'admin'
        , '$2a$10$Q8cgIoqLvufVIkYZLzfi7O6rRi9eNn2/18APAmzRbW9rsA921MJuG'
+       , '0xaa'
        , '000-0000-0000'
        , 'Y')
 ON DUPLICATE KEY
@@ -20,6 +22,7 @@ UPDATE
     , wp_user.email = wp_user.email
     , wp_user.name = wp_user.name
     , wp_user.password = wp_user.password
+    , wp_user.user_token = wp_user.user_token
     , wp_user.phone_number = wp_user.phone_number
     , wp_user.use_yn = wp_user.use_yn;
 
@@ -29,6 +32,7 @@ INSERT INTO wp_user ( ci
                     , email
                     , name
                     , password
+                    , user_token
                     , phone_number
                     , use_yn)
 VALUES ( 'ci'
@@ -36,6 +40,7 @@ VALUES ( 'ci'
        , 'user'
        , 'user'
        , '$2a$10$xaRYL0HbgsM8AH.f1lYnEuUmuqDHHJCc9fpC/F/.W8qHCmnXnd.Bq'
+       , '0xbb'
        , '000-0000-0000'
        , 'Y')
 ON DUPLICATE KEY
@@ -45,6 +50,7 @@ UPDATE
     , wp_user.email = wp_user.email
     , wp_user.name = wp_user.name
     , wp_user.password = wp_user.password
+    , wp_user.user_token = wp_user.user_token
     , wp_user.phone_number = wp_user.phone_number
     , wp_user.use_yn = wp_user.use_yn;
 

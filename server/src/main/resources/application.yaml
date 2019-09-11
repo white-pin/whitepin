@@ -41,6 +41,7 @@ logging:
     root: INFO
     org.springframework.web: DEBUG
     org.springframework.security: DEBUG
+    com.github.whitepin.server.api.controller: DEBUG
 
 ---
 # dev profile
