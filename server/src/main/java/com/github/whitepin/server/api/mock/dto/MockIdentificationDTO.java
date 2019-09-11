@@ -23,13 +23,13 @@ public class MockIdentificationDTO {
 
     @NotNull
     @NotBlank
-    @ApiModelProperty(notes = "user phoneNumber")
+    @ApiModelProperty(notes = "휴대폰번호")
     String phoneNumber;
 
-    @ApiModelProperty(notes = "user ci")
+    @ApiModelProperty(notes = "ci")
     String ci;
 
-    @ApiModelProperty(notes = "user di")
+    @ApiModelProperty(notes = "di")
     String di;
 
 }

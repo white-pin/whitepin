@@ -16,19 +16,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ToString
 @XmlRootElement(name="user")
 @XmlAccessorType(XmlAccessType.FIELD)
-@ApiModel(description = "user")
+@ApiModel(description = "회원")
 public class UserDTO {
 
-    @ApiModelProperty(notes = "user name")
+    @ApiModelProperty(notes = "이름")
     String name;
 
-    @ApiModelProperty(notes = "user email")
+    @ApiModelProperty(notes = "이메일")
     String email;
 
-    @ApiModelProperty(notes = "user phoneNumber")
+    @ApiModelProperty(notes = "휴대폰번호")
     String phoneNumber;
 
-    @ApiModelProperty(notes = "user userToken")
+    @ApiModelProperty(notes = "사용자 토큰")
     String userToken;
+
+    @ApiModelProperty(notes = "연결 된 서비스 X건")
+    int connectedServiceCount = 0;
+
+    @ApiModelProperty(notes = "거래내역 X건")
+    int transactionCount = 0;
+
+    @ApiModelProperty(notes = "내가 받은 평가 X건")
+    int evaluationReceivedCount = 0;
+
+    @ApiModelProperty(notes = "내가 남긴 평가 X건")
+    int myLeftEvaluationCount = 0;
+
 
 }

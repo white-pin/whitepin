@@ -29,8 +29,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST_SPRINGFOX = {
             "/join",
-            "/mock/**",
+            "/partners",
             "/user/count",
+            // -- mock
+            "/mock/**",
             // -- swagger ui
             "/swagger-resources/**",
             "/swagger-ui.html",

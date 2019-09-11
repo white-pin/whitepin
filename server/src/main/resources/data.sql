@@ -88,3 +88,29 @@ ON DUPLICATE KEY
 UPDATE
     wp_user_role.user_id = wp_user_role.user_id
     , wp_user_role.role_id = wp_user_role.role_id;
+
+
+------ INSERT wp_partner
+INSERT INTO wp_partner VALUE ('PTN0001', '에어비앤비')
+ON DUPLICATE KEY
+UPDATE
+    wp_partner.partner_code = wp_partner.partner_code
+    , wp_partner.partner_name = wp_partner.partner_name;
+
+INSERT INTO wp_partner VALUE ('PTN0002', '번개장터')
+ON DUPLICATE KEY
+UPDATE
+    wp_partner.partner_code = wp_partner.partner_code
+    , wp_partner.partner_name = wp_partner.partner_name;
+
+INSERT INTO wp_partner VALUE ('PTN0003', '쏘카')
+ON DUPLICATE KEY
+UPDATE
+    wp_partner.partner_code = wp_partner.partner_code
+    , wp_partner.partner_name = wp_partner.partner_name;
+
+INSERT INTO wp_partner VALUE ('PTN0004', '당근마켓')
+ON DUPLICATE KEY
+UPDATE
+    wp_partner.partner_code = wp_partner.partner_code
+    , wp_partner.partner_name = wp_partner.partner_name;

@@ -19,30 +19,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 @ToString
 @XmlRootElement(name="join")
 @XmlAccessorType(XmlAccessType.FIELD)
-@ApiModel(description = "Join user")
+@ApiModel(description = "회원 가입")
 public class JoinDTO {
 
     @NotNull
     @NotBlank
-    @ApiModelProperty(notes = "user name")
+    @ApiModelProperty(notes = "이름")
     String name;
 
     @Email()
-    @ApiModelProperty(notes = "user email")
+    @ApiModelProperty(notes = "이메일")
     String email;
 
-    @ApiModelProperty(notes = "user password")
+    @ApiModelProperty(notes = "비밀번호")
     String password;
 
-    @ApiModelProperty(notes = "user rePassword")
+    @ApiModelProperty(notes = "비밀번호 확인")
     String rePassword;
 
-    @ApiModelProperty(notes = "user phoneNumber")
+    @ApiModelProperty(notes = "휴대폰번호")
     String phoneNumber;
 
-    @ApiModelProperty(notes = "user ci")
+    @ApiModelProperty(notes = "ci")
     String ci;
 
-    @ApiModelProperty(notes = "user di")
+    @ApiModelProperty(notes = "di")
     String di;
 }
