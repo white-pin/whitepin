@@ -9,12 +9,12 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.Authorization;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
 @RestController
@@ -23,7 +23,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/info", produces = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/user/withdraw", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "User withdrawal", authorizations = {@Authorization(value = "BasicAuth")})
+    @ApiRoleAccessNotes
+    public ResponseEntity<UserDTO> userWithdraw() {
+        return ResponseEntity.ok().body(userService.userWithdraw());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get details of a user", authorizations = {@Authorization(value = "BasicAuth")})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Details about the given user"),
@@ -35,7 +42,8 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUserInfo());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/count", produces = APPLICATION_JSON_VALUE)
+
+    @RequestMapping(method = RequestMethod.GET, value = "/user/count", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get total user count")
     public ResponseEntity<Long> getUserCount() {
         return ResponseEntity.ok().body(userService.getUserCount());

@@ -16,7 +16,9 @@ public class MatchersSecurityConfiguration {
     public HttpMethodResourceAntMatchers getMatchers() {
         if (matchers == null) {
             matchers = new HttpMethodResourceAntMatchers();
-            matchers.antMatchers(HttpMethod.GET, "/user/info").hasAnyRole("admin", "user");
+            matchers.antMatchers(HttpMethod.GET, "/user/info").hasAnyRole("admin", "user")
+                    .antMatchers(HttpMethod.POST, "/user/withdraw").hasAnyRole("user")
+                    ;
         }
         return matchers;
     }

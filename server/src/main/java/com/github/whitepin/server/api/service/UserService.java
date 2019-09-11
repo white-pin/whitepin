@@ -18,6 +18,17 @@ public class UserService {
     @Autowired
     private Converter<UserEntity, UserDTO> userEntityUserDTOConverter;
 
+    public UserDTO userWithdraw() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserEntity userEntity = userRepository.findByEmail(userDetails.getUsername());
+        userEntity.setUseYn("N");
+        UserDTO userDTO = userEntityUserDTOConverter.convert(userRepository.save(userEntity));
+
+        SecurityContextHolder.clearContext();
+
+        return userDTO;
+    }
+
     public UserDTO getUserInfo() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userEntityUserDTOConverter.convert(userRepository.findByEmail(userDetails.getUsername()));
