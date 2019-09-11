@@ -34,4 +34,10 @@ public class UserController {
     public ResponseEntity<UserDTO> getUserInfo() {
         return ResponseEntity.ok().body(userService.getUserInfo());
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/user/count", produces = APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Get total user count")
+    public ResponseEntity<Long> getUserCount() {
+        return ResponseEntity.ok().body(userService.getUserCount());
+    }
 }

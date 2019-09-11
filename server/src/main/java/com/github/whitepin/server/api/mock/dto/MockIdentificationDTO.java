@@ -1,9 +1,11 @@
-package com.github.whitepin.server.api.dto;
+package com.github.whitepin.server.api.mock.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,21 +16,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @Builder
 @ToString
-@XmlRootElement(name="user")
+@XmlRootElement(name="identification")
 @XmlAccessorType(XmlAccessType.FIELD)
-@ApiModel(description = "user")
-public class UserDTO {
+@ApiModel(description = "identification")
+public class MockIdentificationDTO {
 
-    @ApiModelProperty(notes = "user name")
-    String name;
-
-    @ApiModelProperty(notes = "user email")
-    String email;
-
+    @NotNull
+    @NotBlank
     @ApiModelProperty(notes = "user phoneNumber")
     String phoneNumber;
 
-    @ApiModelProperty(notes = "user userToken")
-    String userToken;
+    @ApiModelProperty(notes = "user ci")
+    String ci;
+
+    @ApiModelProperty(notes = "user di")
+    String di;
 
 }

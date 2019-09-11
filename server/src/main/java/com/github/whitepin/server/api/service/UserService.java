@@ -1,10 +1,7 @@
 package com.github.whitepin.server.api.service;
 
-import com.github.whitepin.server.api.dto.JoinDTO;
 import com.github.whitepin.server.api.dto.UserDTO;
-import com.github.whitepin.server.api.entity.RoleEntity;
 import com.github.whitepin.server.api.entity.UserEntity;
-import com.github.whitepin.server.api.repository.RoleRepository;
 import com.github.whitepin.server.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -24,5 +21,9 @@ public class UserService {
     public UserDTO getUserInfo() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userEntityUserDTOConverter.convert(userRepository.findByEmail(userDetails.getUsername()));
+    }
+
+    public long getUserCount() {
+        return userRepository.count();
     }
 }
