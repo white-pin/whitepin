@@ -1,4 +1,4 @@
-package com.github.whitepin.server.api.service;
+package com.github.whitepin.server.api.service.security;
 
 import com.github.whitepin.server.api.entity.UserEntity;
 import com.github.whitepin.server.api.repository.UserRepository;
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WhitepinUserDetailsService implements UserDetailsService {
+public class WhitepinUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

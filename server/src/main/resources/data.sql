@@ -12,7 +12,7 @@ VALUES ( 'ci'
        , 'admin'
        , 'admin'
        , '$2a$10$Q8cgIoqLvufVIkYZLzfi7O6rRi9eNn2/18APAmzRbW9rsA921MJuG'
-       , '0xaa'
+       , 'aa'
        , '000-0000-0000'
        , 'Y')
 ON DUPLICATE KEY
@@ -40,7 +40,7 @@ VALUES ( 'ci'
        , 'user'
        , 'user'
        , '$2a$10$xaRYL0HbgsM8AH.f1lYnEuUmuqDHHJCc9fpC/F/.W8qHCmnXnd.Bq'
-       , '0xbb'
+       , 'bb'
        , '000-0000-0000'
        , 'Y')
 ON DUPLICATE KEY

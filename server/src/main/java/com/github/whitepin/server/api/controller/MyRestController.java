@@ -13,10 +13,10 @@ import javax.validation.Valid;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
-@RestController
+//@RestController
 public class MyRestController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/user/{userName}", produces = APPLICATION_JSON_VALUE)
+//    @RequestMapping(method = RequestMethod.GET, value = "/user/{userName}", produces = APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get details of a user with the given username", authorizations = {@Authorization(value = "BasicAuth")})
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Details about the given user"),
@@ -34,7 +34,7 @@ public class MyRestController {
                 .build();
     }
 
-    @PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a new user or update an existing user (based on username)", authorizations = {@Authorization(value = "BasicAuth")})
     @ApiResponses(value = {

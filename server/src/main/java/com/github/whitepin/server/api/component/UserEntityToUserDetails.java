@@ -1,7 +1,7 @@
 package com.github.whitepin.server.api.component;
 
 import com.github.whitepin.server.api.entity.UserEntity;
-import com.github.whitepin.server.api.service.security.UserDetailsServiceImpl;
+import com.github.whitepin.server.api.service.security.WhitepinUserDetailsImpl;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +15,7 @@ public class UserEntityToUserDetails implements Converter<UserEntity, UserDetail
 
     @Override
     public UserDetails convert(UserEntity user) {
-        UserDetailsServiceImpl userDetails = new UserDetailsServiceImpl();
+        WhitepinUserDetailsImpl userDetails = new WhitepinUserDetailsImpl();
         if (user != null) {
             userDetails.setUsername(user.getEmail());
             userDetails.setPassword(user.getPassword());
