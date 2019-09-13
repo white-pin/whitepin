@@ -36,10 +36,15 @@ public class FrontendApplication {
     }
 
     // TODO : temp
-    @GetMapping("/join-success")
+    @GetMapping("/backup/join-success")
     public String joinSuccessPage() {
         logger.info("Request join success page");
         return "join_success";
+    }
+
+    @GetMapping("/backup/temp")
+    public String tempPage() {
+        return "temp";
     }
     // -- TODO : temp
 
