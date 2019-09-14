@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+  whitepin-mariadb:
+    image: mariadb:10.3
+    container_name: whitepin-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: maria
+      MYSQL_DATABASE: whitepin
+      MYSQL_USER: whitepin
+      MYSQL_PASSWORD: whitepin12345
+    ports:
+      - 3306:3306
+    restart: on-failure
+    volumes:
+      - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
