@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temp</title>
+</head>
+<body>
+
+<h1>temp.html</h1>
+<div id="templateDiv"></div>
+
+<!--<script id="myTemplate" type="text/x-handlebars-template">
+  <h2>This is template!!</h2>
+</script>-->
+
+<script src="/static/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="/webjars/handlebars/4.0.11-1/handlebars.min.js"></script>
+<script src="/static/js/whitepin-common.js"></script>
+<script src="/static/include/temp_template.hbs" id="myTemplate"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    handlebarsManager.printTemplate(null, $('#templateDiv'), $('#myTemplate'), 'html', null, null, true);
+  });
+</script>
+
+</body>
+</html>
