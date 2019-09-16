@@ -33,7 +33,7 @@ public class JoinController {
             @ApiResponse(code = 200, message = "User was successfully created"),
     })
     @ApiRoleAccessNotes
-    public ResponseEntity<UserDTO> joinUser(@Valid @RequestBody JoinDTO joinDTO) {
+    public ResponseEntity<UserDTO> joinUser(@Valid @RequestBody JoinDTO joinDTO) throws Exception {
         return ResponseEntity.ok().body(joinService.joinUser(joinDTO));
     }
 }

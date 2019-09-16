@@ -52,12 +52,12 @@ public class EvaluationService {
                 .build();
     }
 
-    public EvaluationListDTO getUserEvaluationList(String userToken, String filterDivision, String pagingSize, String currentPageNumber) {
+    public EvaluationListDTO getUserEvaluationList(String userToken, String filterDivision, String pagingSize, String pageNumber) {
         return EvaluationListDTO.builder()
                 .userToken(userToken)
                 .filterDivision(filterDivision)
                 .pagingSize(pagingSize)
-                .currentPageNumber(currentPageNumber)
+                .pageNumber(pageNumber)
                 .transaction(
                         Arrays.asList(
                                 EvaluationListDTO.Transaction.builder()

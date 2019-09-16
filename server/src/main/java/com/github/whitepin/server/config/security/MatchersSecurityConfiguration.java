@@ -18,6 +18,7 @@ public class MatchersSecurityConfiguration {
             matchers = new HttpMethodResourceAntMatchers();
             matchers.antMatchers(HttpMethod.GET, "/user/info").hasAnyRole("admin", "user")
                     .antMatchers(HttpMethod.POST, "/user/withdraw").hasAnyRole("user")
+                    .antMatchers(HttpMethod.POST, "/user/joinPartner/{partnerCode}").hasAnyRole("user")
                     ;
         }
         return matchers;

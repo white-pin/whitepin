@@ -25,10 +25,16 @@ public class JoinService {
     @Autowired
     private Converter<UserEntity, UserDTO> userEntityUserDTOConverter;
 
-    public UserDTO joinUser(JoinDTO joinDTO) {
+    @Autowired
+    private FabricService fabricService;
+
+    public UserDTO joinUser(JoinDTO joinDTO) throws Exception {
         UserEntity userEntity = joinUserEntityConverter.convert(joinDTO);
         RoleEntity roleUser = roleRepository.findByRole("user");
         userEntity.addRole(roleUser);
+
+        //fabricService.addUser(userEntity.getUserToken());
+
         return userEntityUserDTOConverter.convert(userRepository.save(userEntity));
     }
 }

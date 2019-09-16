@@ -37,7 +37,7 @@ public class EvaluationController {
         return ResponseEntity.ok().body(evaluationService.getUserEvaluationAverage(userToken));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/evaluation/List/{userToken}/{filterDivision}/{pagingSize}/{currentPageNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value = "/evaluation/List/{userToken}/{filterDivision}/{pagingSize}/{pageNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get evaluation list")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Details about the given user evaluation list"),
@@ -47,13 +47,13 @@ public class EvaluationController {
                                                                    @ApiParam("Non-empty userToken") @PathVariable(name = "userToken", required = true) String userToken
             , @ApiParam("Non-empty filterDivision") @PathVariable(name = "filterDivision", required = true) String filterDivision
             , @ApiParam("Non-empty pagingSize") @PathVariable(name = "pagingSize", required = true) String pagingSize
-            , @ApiParam("Non-empty currentPageNumber") @PathVariable(name = "currentPageNumber", required = true) String currentPageNumber
+            , @ApiParam("Non-empty pageNumber") @PathVariable(name = "pageNumber", required = true) String pageNumber
     ) {
         return ResponseEntity.ok().body(evaluationService.getUserEvaluationList(
                 userToken
                 , filterDivision
                 , pagingSize
-                , currentPageNumber
+                , pageNumber
         ));
     }
 

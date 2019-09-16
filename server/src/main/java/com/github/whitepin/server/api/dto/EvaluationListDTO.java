@@ -31,8 +31,8 @@ public class EvaluationListDTO {
     @ApiModelProperty(notes = "페이징 사이즈(한 페이지 표시 갯수)")
     String pagingSize;
 
-    @ApiModelProperty(notes = "현재 페이지 번호")
-    String currentPageNumber;
+    @ApiModelProperty(notes = "조회 페이지 번호")
+    String pageNumber;
 
     @ApiModelProperty(notes = "구매/판매 목록")
     List<Transaction> transaction;

@@ -11,6 +11,13 @@
 
     <artifactId>server</artifactId>
 
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- spring boots-->
         <dependency>
@@ -71,6 +78,13 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.60</version>
+        </dependency>
+
+        <!--whitepin-sdk-java-->
+        <dependency>
+            <groupId>com.github.white-pin</groupId>
+            <artifactId>whitepin-sdk-java</artifactId>
+            <version>0.1</version>
         </dependency>
 
         <!-- test -->

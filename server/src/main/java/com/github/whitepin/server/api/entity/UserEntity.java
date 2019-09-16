@@ -71,4 +71,20 @@ public class UserEntity {
         this.roles.add(roleEntity);
     }
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "wp_user_partner", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "partner_code")
+            , indexes = {
+            @Index(columnList="user_id,partner_code", unique = true)
+    }
+    )
+    private List<PartnerEntity> partners = new ArrayList<>();
+
+    public void addPartners(PartnerEntity partnerEntity){
+        if(CollectionUtils.isEmpty(this.partners)){
+            this.partners = new ArrayList<>();
+        }
+        this.partners.add(partnerEntity);
+    }
+
 }
