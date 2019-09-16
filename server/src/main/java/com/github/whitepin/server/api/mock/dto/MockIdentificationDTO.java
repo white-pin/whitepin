@@ -1,10 +1,9 @@
-package com.github.whitepin.server.api.dto;
+package com.github.whitepin.server.api.mock.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -17,26 +16,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NoArgsConstructor
 @Builder
 @ToString
-@XmlRootElement(name="join")
+@XmlRootElement(name="identification")
 @XmlAccessorType(XmlAccessType.FIELD)
-@ApiModel(description = "회원 가입")
-public class JoinDTO {
+@ApiModel(description = "identification")
+public class MockIdentificationDTO {
 
     @NotNull
     @NotBlank
-    @ApiModelProperty(notes = "이름")
-    String name;
-
-    @Email()
-    @ApiModelProperty(notes = "이메일")
-    String email;
-
-    @ApiModelProperty(notes = "비밀번호")
-    String password;
-
-    @ApiModelProperty(notes = "비밀번호 확인")
-    String rePassword;
-
     @ApiModelProperty(notes = "휴대폰번호")
     String phoneNumber;
 
@@ -45,4 +31,5 @@ public class JoinDTO {
 
     @ApiModelProperty(notes = "di")
     String di;
+
 }

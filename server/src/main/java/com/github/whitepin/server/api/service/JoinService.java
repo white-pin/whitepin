@@ -7,7 +7,6 @@ import com.github.whitepin.server.api.entity.UserEntity;
 import com.github.whitepin.server.api.repository.RoleRepository;
 import com.github.whitepin.server.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 

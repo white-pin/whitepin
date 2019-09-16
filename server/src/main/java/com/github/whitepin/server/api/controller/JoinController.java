@@ -2,7 +2,6 @@ package com.github.whitepin.server.api.controller;
 
 import com.github.whitepin.server.api.dto.JoinDTO;
 import com.github.whitepin.server.api.dto.UserDTO;
-import com.github.whitepin.server.api.entity.UserEntity;
 import com.github.whitepin.server.api.service.JoinService;
 import com.github.whitepin.server.config.security.ApiRoleAccessNotes;
 import io.swagger.annotations.ApiOperation;
