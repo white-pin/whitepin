@@ -17,6 +17,7 @@ public class UserEntityToUserDTO implements Converter<UserEntity, UserDTO> {
                     .email(user.getEmail())
                     .phoneNumber(user.getPhoneNumber())
                     .userToken(user.getUserToken())
+                    .createDate(user.getCreateDate())
                     .build();
         }
         return userDTO;

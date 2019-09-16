@@ -43,5 +43,8 @@ public class UserDTO {
     @ApiModelProperty(notes = "내가 남긴 평가 X건")
     int myLeftEvaluationCount = 0;
 
+    @ApiModelProperty(notes = "생성 일시")
+    java.util.Calendar createDate;
+
 
 }

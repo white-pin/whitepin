@@ -51,6 +51,10 @@ public class UserEntity {
     @Column(nullable = false)
     String useYn = "Y";
 
+    @Column(name = "create_date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    java.util.Calendar createDate;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "wp_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id")
