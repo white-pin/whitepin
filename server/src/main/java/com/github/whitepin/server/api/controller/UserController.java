@@ -1,6 +1,6 @@
 package com.github.whitepin.server.api.controller;
 
-import com.github.whitepin.server.api.dto.PartnerDTO;
+import com.github.whitepin.server.api.dto.CountDTO;
 import com.github.whitepin.server.api.dto.UserDTO;
 import com.github.whitepin.server.api.service.UserService;
 import com.github.whitepin.server.config.security.ApiRoleAccessNotes;
@@ -42,7 +42,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/user/count", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Get total user count")
-    public ResponseEntity<Long> getUserCount() {
+    public ResponseEntity<CountDTO> getUserCount() throws Exception {
         return ResponseEntity.ok().body(userService.getUserCount());
     }
 

@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -25,7 +26,7 @@ public class EvaluationListDTO {
     @ApiModelProperty(notes = "조회 대상 사용자 토큰")
     String userToken;
 
-    @ApiModelProperty(notes = "조회 구분 : 1(구매), 2(판매), 3(전체)")
+    @ApiModelProperty(notes = "조회 구분 : buy(구매), sell(판매)")
     String filterDivision;
 
     @ApiModelProperty(notes = "페이징 사이즈(한 페이지 표시 갯수)")
@@ -34,8 +35,14 @@ public class EvaluationListDTO {
     @ApiModelProperty(notes = "조회 페이지 번호")
     String pageNumber;
 
+    @ApiModelProperty(notes = "정렬 방식 : asc, desc")
+    String orderType;
+
+    @ApiModelProperty(notes = "목록 전체 건수")
+    int totalCount = 0;
+
     @ApiModelProperty(notes = "구매/판매 목록")
-    List<Transaction> transaction;
+    List<Transaction> transaction = new ArrayList<>();
 
     @Getter
     @Setter
@@ -46,7 +53,7 @@ public class EvaluationListDTO {
     @ApiModel(description = "구매/판매 목록")
     public static class Transaction {
 
-        @ApiModelProperty(notes = "구분 : 1(구매), 2(판매)")
+        @ApiModelProperty(notes = "구분 : buy(구매), sell(판매)")
         String division = "";
 
         @ApiModelProperty(notes = "거래내역")

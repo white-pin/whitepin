@@ -3,7 +3,7 @@ package com.github.whitepin.server.api.service;
 import com.github.whitepin.sdk.contruct.FabricContruct;
 import com.github.whitepin.sdk.whitepin.invocation.ChaincodeInvocation;
 import com.github.whitepin.sdk.whitepin.vo.UserVo;
-import com.github.whitepin.server.api.dto.PartnerDTO;
+import com.github.whitepin.server.api.dto.CountDTO;
 import com.github.whitepin.server.api.dto.UserDTO;
 import com.github.whitepin.server.api.entity.PartnerEntity;
 import com.github.whitepin.server.api.entity.UserEntity;
@@ -56,11 +56,19 @@ public class UserService {
         int evaluationReceivedCount = (userVo.getSellAmt() + userVo.getBuyAmt()) - (userVo.getSellEx() + userVo.getBuyEx());
         userDTO.setEvaluationReceivedCount(evaluationReceivedCount);
 
+        int myLeftEvaluationCount = 0;
+        userDTO.setMyLeftEvaluationCount(myLeftEvaluationCount);
+
         return userDTO;
     }
 
-    public long getUserCount() {
-        return userRepository.count();
+    public CountDTO getUserCount() throws Exception {
+        UserVo userVo = chaincodeInvocation.queryTotalUser(fabricContruct.getChannel(), fabricContruct.getClient());
+
+        return CountDTO.builder()
+                .user((int) userRepository.count())
+                .transaction(userVo.getSellAmt())
+                .build();
     }
 
     public UserDTO joinPartner(String partnerCode) {

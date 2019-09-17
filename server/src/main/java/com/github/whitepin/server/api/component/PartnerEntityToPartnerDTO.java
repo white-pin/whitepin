@@ -10,20 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class PartnerEntityToPartnerDTO implements Converter<PartnerEntity, PartnerDTO> {
+public class PartnerEntityToPartnerDTO implements Converter<List<PartnerEntity>, List<PartnerDTO>> {
 
     @Override
-    public PartnerDTO convert(PartnerEntity partner) {
-        PartnerDTO partnerDTO = new PartnerDTO();
-        if (partner != null) {
-            partnerDTO = PartnerDTO.builder()
-                    .code(partner.getCode())
-                    .name(partner.getName())
-                    .build();
-        }
-        return partnerDTO;
-    }
-
     public List<PartnerDTO> convert(List<PartnerEntity> partnerList) {
         List<PartnerDTO> partnerDTOList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(partnerList)) {

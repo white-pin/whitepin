@@ -33,7 +33,7 @@ public class JoinService {
         RoleEntity roleUser = roleRepository.findByRole("user");
         userEntity.addRole(roleUser);
 
-        //fabricService.addUser(userEntity.getUserToken());
+        fabricService.addUser(userEntity.getUserToken());
 
         return userEntityUserDTOConverter.convert(userRepository.save(userEntity));
     }

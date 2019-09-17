@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/join",
             "/partners",
             "/user/count",
-            "/evaluation/{userToken}/avg",
-            "/evaluation/List/",
+            "/evaluation/avg/**",
+            "/evaluation/list/**",
             // -- mock
             "/mock/**",
             // -- swagger ui
