@@ -1,3 +1,34 @@
+var apiClient = (function () {
+  const endPoints = "http://localhost:3030";
+  const path = {
+    identification: "/mock/identification"
+  };
+
+  var request = function (path, type, data, successHandler, errorHandler) {
+    $.ajax({
+      url: endPoints + path,
+      headers: {
+        dataType: 'json',
+      },
+      type: type,
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (response) {
+        successHandler(response);
+      }, error: function (jqxhr) {
+        errorHandler(jqxhr);
+      }
+    });
+  };
+
+  return {
+    path: path,
+    request: request
+  };
+})();
+
 var handlebarsManager = (function () {
   var printTemplate = function (data, target, templateObject, type, prefixHtml, suffixHtml, clear) {
     if (clear) {
@@ -74,15 +105,16 @@ var accountManager = (function () {
   };
 
   return {
-    getLoginInfo       : getLoginInfo,
-    isSingedIn         : isSignedIn,
-    requestSignIn      : requestSignIn,
+    getLoginInfo: getLoginInfo,
+    isSingedIn: isSignedIn,
+    requestSignIn: requestSignIn,
     updateLoginTemplate: updateLoginTemplate
   };
 })();
 
 var validator = (function () {
   var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var cellphoneRegex = /^[0-9]{3}[-]+[0-9]{3,4}[-]+[0-9]{4}$/;
 
   var isEmpty = function (input) {
     if (typeof input === "undefined" || input === '') {
@@ -104,9 +136,18 @@ var validator = (function () {
     return input.length >= 6;
   };
 
+  var isValidCellPhone = function (input) {
+    if (isEmpty(input)) {
+      return false;
+    }
+
+    return cellphoneRegex.test(String(input));
+  };
+
   return {
-    isEmpty        : isEmpty,
-    isValidEmail   : isValidEmail,
-    isValidPassword: isValidPassword
+    isEmpty: isEmpty,
+    isValidEmail: isValidEmail,
+    isValidPassword: isValidPassword,
+    isValidCellPhone: isValidCellPhone
   };
 })();

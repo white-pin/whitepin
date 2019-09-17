@@ -267,7 +267,8 @@ Tip 2: you can also add an image using data-image tag
                             <label for="cellphone">휴대폰번호</label>
                             <div class="input-group mb-3">
                               <input type="text" id="cellphone" class="form-control" aria-label="Default"
-                                     aria-describedby="inputGroup-sizing-default">
+                                     aria-describedby="inputGroup-sizing-default" placeholder="예)010-123-1234"
+                                     value="010-123-1234">
                               <div class="input-group-prepend">
                                 <button id="btnVerification" class="btn btn-dark">인증하기</button>
                               </div>
@@ -459,7 +460,7 @@ Tip 2: you can also add an image using data-image tag
 
       // bindings..
       $('#btnSearch').on('click', function () {
-        var addr = $('#searchInput').val();
+        let addr = $('#searchInput').val();
         // if (addr === undefined || addr.length !== 64) {
         if (addr === undefined || addr.length === '') {
           alert('올바른 아이디를 입력해주세요.');
@@ -470,12 +471,36 @@ Tip 2: you can also add an image using data-image tag
       });
 
       $('#btnVerification').on('click', function () {
-        alert("인증하기");
+        let cellphone = $('#cellphone').val();
+
+        if (!validator.isValidCellPhone(cellphone)) {
+          alert("올바른 휴대전화를 입력해주세요.");
+        }
+
+        // path, type, dataType, data, successHandler, errorHandler
+        var path = apiClient.path.identification;
+        var type = 'json';
+        var data = {
+          phoneNumber: cellphone
+        };
+
+        var successHandler = function (response) {
+          console.log(response.ci);
+          console.log(response.di);
+          alert("인증에 성공하였습니다.");
+        };
+
+        var errorHandler = function (jqxhr) {
+          alert("인증에 실패하였습니다.");
+          console.log(jqxhr);
+        };
+
+        apiClient.request(path, type, JSON.stringify(data), successHandler, errorHandler);
       });
 
       $('#btnJoin').on('click', function () {
         alert("가입하기");
-        var self = window.join;
+        let self = window.join;
         self.handleSignUpSuccess(null);
       });
     },
