@@ -243,76 +243,72 @@ Tip 2: you can also add an image using data-image tag
 
                     <!-- right content -->
                     <div class="col-md-6">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="email">이메일</label>
-                            <input type="text" class="form-control" placeholder="" id="email">
+                      <form id="joinForm" onsubmit="return false;">
+                        <input type="hidden" id="ci" name="ci" />
+                        <input type="hidden" id="di" name="di" />
+
+                        <div class="row" style="margin-top: 10px;">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="email">이메일</label>
+                              <input type="text" class="form-control" placeholder="" id="email">
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="name">이름</label>
-                            <input type="text" class="form-control" placeholder="" id="name">
+                        <div class="row" style="margin-top: 10px;">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="name">이름</label>
+                              <input type="text" class="form-control" placeholder="" id="name">
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="cellphone">휴대폰번호</label>
-                            <div class="input-group mb-3">
-                              <input type="text" id="cellphone" class="form-control" aria-label="Default"
-                                     aria-describedby="inputGroup-sizing-default" placeholder="예)010-123-1234"
-                                     value="010-123-1234">
-                              <div class="input-group-prepend">
-                                <button id="btnVerification" class="btn btn-dark">인증하기</button>
+                        <div class="row" style="margin-top: 10px;">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="cellphone">휴대폰번호</label>
+                              <div class="input-group mb-3">
+                                <input type="text" id="cellphone" class="form-control" aria-label="Default"
+                                       aria-describedby="inputGroup-sizing-default"
+                                       placeholder="예)010-123-1234">
+                                <div class="input-group-prepend">
+                                  <button id="btnVerification" class="btn btn-dark">인증하기</button>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="verificationCode">인증번호</label>
-                            <input type="text" class="form-control" placeholder="" id="verificationCode">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="password">비밀번호</label>
-                            <input type="password" class="form-control" placeholder="" id="password">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="repassword">비밀번호 확인</label>
-                            <input type="text" class="form-control" placeholder="" id="repassword">
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
+                        <div class="row" style="margin-top: 10px;">
+                          <div class="col-md-12">
                             <div class="form-group">
-                              <button id="btnJoin" class="btn btn-dark btn-block">화이트핀 발급 하기</button>
+                              <label for="password">비밀번호</label>
+                              <input type="password" class="form-control" placeholder="" id="password">
                             </div>
                           </div>
                         </div>
-                      </div>
+
+                        <div class="row" style="margin-top: 10px;">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="repassword">비밀번호 확인</label>
+                              <input type="password" class="form-control" placeholder="" id="repassword">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 30px;">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <div class="form-group">
+                                <button id="btnJoin" class="btn btn-dark btn-block">화이트핀 발급 하기</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
                     </div> <!-- ./right content -->
                   </div>
                 </div>
@@ -390,16 +386,16 @@ Tip 2: you can also add an image using data-image tag
   </div>
 
   <div class="row" style="padding-top: 10px;">
-    <div class="col-md-2"></div>
-    <div class="col-md-8 bg-light">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 bg-light">
       <div class="text-center">
         <!--<img style="display: block; margin-left: auto;margin-right: auto;width: 20%;"
              src="/img/whitepin-logo.png">-->
         <h4>WHITE PIN LOGO WITH GRAY</h4>
       </div>
-      <h3 class="text-center">{{userId}}</h3>
+      <h4 class="text-center">0x{{userId}}</h4>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
   </div>
 
 
@@ -448,21 +444,39 @@ Tip 2: you can also add an image using data-image tag
 
 <script type="text/javascript">
   window.join = {
-    init: function () {
+    init               : function () {
       console.log('initialize join..');
 
+      /**
+       * form enter 처리
+       */
+      $('input[type="text"]').keydown(function (e) {
+        if (e.keyCode !== 13) {
+          return;
+        }
+
+        if (e.target.id == 'searchInput') {
+          $('#btnSearch').trigger('click');
+        } else {
+          e.preventDefault();
+        }
+      });
+
+      /**
+       * 이미 로그인 한 상태인지 체크
+       */
       if (accountManager.isSingedIn()) {
         console.log('already signed in');
         self.location = "/accounts/edit";
       }
-
       accountManager.updateLoginTemplate();
 
-      // bindings..
+      /**
+       * bindings
+       */
       $('#btnSearch').on('click', function () {
         let addr = $('#searchInput').val();
-        // if (addr === undefined || addr.length !== 64) {
-        if (addr === undefined || addr.length === '') {
+        if (validator.isEmpty(addr)) {
           alert('올바른 아이디를 입력해주세요.');
           return;
         }
@@ -475,18 +489,18 @@ Tip 2: you can also add an image using data-image tag
 
         if (!validator.isValidCellPhone(cellphone)) {
           alert("올바른 휴대전화를 입력해주세요.");
+          return;
         }
 
-        // path, type, dataType, data, successHandler, errorHandler
         var path = apiClient.path.identification;
-        var type = 'json';
+        var type = 'POST';
         var data = {
           phoneNumber: cellphone
         };
 
         var successHandler = function (response) {
-          console.log(response.ci);
-          console.log(response.di);
+          $('#ci').val(response.ci);
+          $('#di').val(response.di);
           alert("인증에 성공하였습니다.");
         };
 
@@ -499,12 +513,76 @@ Tip 2: you can also add an image using data-image tag
       });
 
       $('#btnJoin').on('click', function () {
-        alert("가입하기");
+        // validate
         let self = window.join;
-        self.handleSignUpSuccess(null);
+
+        let data = self.getJoinData();
+        if (data == null) {
+          return;
+        }
+
+        let path = apiClient.path.join;
+        let type = 'POST';
+
+        let successHandler = function (response) {
+          self.handleSignUpSuccess(response.userToken);
+        };
+
+        let errorHandler = function (jqxhr) {
+          alert("가입에 실패하였습니다.");
+          console.log(jqxhr);
+        };
+
+        apiClient.request(path, type, JSON.stringify(data), successHandler, errorHandler);
       });
     },
+    // returns join data or null if invalid
+    getJoinData        : function () {
 
+      var ci = $('#ci').val();
+      var di = $('#di').val();
+      var email = $('#email').val();
+      var name = $('#name').val();
+      var cellphone = $('#cellphone').val();
+      var password = $('#password').val();
+      var rePassword = $('#repassword').val();
+
+      if (!validator.isValidCellPhone(cellphone)
+          || validator.isEmpty(ci) || validator.isEmpty(di)) {
+        alert('본인 인증이 필요합니다.');
+        return null;
+      }
+
+      if (validator.isEmpty(password)) {
+        alert('비밀번호를 입력해주세요.');
+        return;
+      }
+
+      if (password !== rePassword) {
+        alert('패스워드가 다릅니다.');
+        return null;
+      }
+
+      if (!validator.isValidEmail(email)) {
+        alert('유효하지 않은 이메일 입니다.');
+        return null;
+      }
+
+      if (validator.isEmpty(name)) {
+        alert('이름을 입력해주세요.');
+        return null;
+      }
+
+      return {
+        ci         : ci,
+        di         : di,
+        email      : email,
+        name       : name,
+        phoneNumber: cellphone,
+        password   : password,
+        rePassword : rePassword
+      };
+    },
     handleSignUpSuccess: function (userId) {
       console.log('handleSignUpSuccess');
       // TODO : temp

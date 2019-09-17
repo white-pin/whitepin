@@ -39,7 +39,7 @@ public class FrontendApplication {
     @GetMapping("/backup/join-success")
     public String joinSuccessPage() {
         logger.info("Request join success page");
-        return "join_success";
+        return "backup/join_success";
     }
 
     @GetMapping("/backup/temp")

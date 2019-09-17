@@ -1,30 +1,31 @@
 var apiClient = (function () {
   const endPoints = "http://localhost:3030";
   const path = {
-    identification: "/mock/identification"
+    identification: "/mock/identification",
+    join          : "/join"
   };
 
-  var request = function (path, type, data, successHandler, errorHandler) {
+  var request = function (path, method, data, successHandler, errorHandler) {
     $.ajax({
-      url: endPoints + path,
-      headers: {
-        dataType: 'json',
+      url        : endPoints + path,
+      headers    : {
+        dataType: 'json'
       },
-      type: type,
-      data: data,
-      cache: false,
-      contentType: false,
+      contentType: "application/json",
+      type       : method,
+      data       : data,
+      cache      : false,
       processData: false,
-      success: function (response) {
+      success    : function (response) {
         successHandler(response);
-      }, error: function (jqxhr) {
+      }, error   : function (jqxhr) {
         errorHandler(jqxhr);
       }
     });
   };
 
   return {
-    path: path,
+    path   : path,
     request: request
   };
 })();
@@ -105,9 +106,9 @@ var accountManager = (function () {
   };
 
   return {
-    getLoginInfo: getLoginInfo,
-    isSingedIn: isSignedIn,
-    requestSignIn: requestSignIn,
+    getLoginInfo       : getLoginInfo,
+    isSingedIn         : isSignedIn,
+    requestSignIn      : requestSignIn,
     updateLoginTemplate: updateLoginTemplate
   };
 })();
@@ -145,9 +146,9 @@ var validator = (function () {
   };
 
   return {
-    isEmpty: isEmpty,
-    isValidEmail: isValidEmail,
-    isValidPassword: isValidPassword,
+    isEmpty         : isEmpty,
+    isValidEmail    : isValidEmail,
+    isValidPassword : isValidPassword,
     isValidCellPhone: isValidCellPhone
   };
 })();
