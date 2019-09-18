@@ -243,12 +243,12 @@ Tip 2: you can also add an image using data-image tag
   <ul class="navbar-nav ml-auto">
     {{#if isSingedIn}}
     <li class="nav-item dropdown">
-      <a class="nav-link" href="/accounts/edit">
+      <a class="nav-link" href="javascript:void(0);" id="mypage">
         <span class="no-icon">내 거래내역/평가</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/logout">
+      <a class="nav-link" href="javascript:void(0);" id="logout">
         <span class="no-icon">로그아웃</span>
       </a>
     </li>
@@ -288,6 +288,30 @@ Tip 2: you can also add an image using data-image tag
     // event
     init: function () {
       accountManager.updateLoginTemplate();
+
+      /**
+       * form enter 처리
+       */
+      $('input[type="text"]').keydown(function (e) {
+        if (e.keyCode !== 13) {
+          return;
+        }
+
+        if (e.target.id == 'searchInput') {
+          $('#btnSearch').trigger('click');
+        } else {
+          e.preventDefault();
+        }
+      });
+
+      $('#logout').on('click', function () {
+        accountManager.requestSignOut();
+      });
+
+      $('#mypage').on('click', function () {
+        var loginInfo = accountManager.getLoginInfo();
+        self.location = "/account/" + loginInfo.userToken;
+      });
 
       $('#btnSearch').on('click', function () {
         var addr = $('#searchInput').val();

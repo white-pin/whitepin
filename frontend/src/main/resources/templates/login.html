@@ -220,7 +220,6 @@ Tip 2: you can also add an image using data-image tag
       }
 
       $('#btnLogin').on('click', function () {
-        alert('login with : ' + self.$email.val() + ' with ' + self.$password.val());
         var email = self.$email.val();
 
         if (!validator.isValidEmail(email)) {

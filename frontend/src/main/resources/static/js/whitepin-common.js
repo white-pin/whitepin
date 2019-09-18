@@ -4,7 +4,8 @@ var apiClient = (function () {
     identification: "/mock/identification",
     join          : "/join",
     user          : {
-      count : "/user/count"
+      count: "/user/count",
+      info : "/user/info"
     }
   };
 
@@ -28,8 +29,9 @@ var apiClient = (function () {
   };
 
   return {
-    path   : path,
-    request: request
+    endPoints: endPoints,
+    path     : path,
+    request  : request
   };
 })();
 
@@ -67,23 +69,53 @@ var handlebarsManager = (function () {
 })();
 
 var accountManager = (function () {
+  const loginInfoKey = 'loginInfo';
   /**
    * login 정보 조회
    */
   var getLoginInfo = function () {
-    console.log("get login info..");
+    return JSON.parse(sessionStorage.getItem(loginInfoKey));
   };
 
   /**
    * 로그인 체크
    */
   var isSignedIn = function () {
-    var loginInfo = sessionStorage.getItem("loginInfo");
+    var loginInfo = sessionStorage.getItem(loginInfoKey);
     return typeof loginInfo != "undefined" && loginInfo != null;
   };
 
   var requestSignIn = function (email, password) {
-    console.log('will request login.. with ', email, ' and ', password);
+    var authToken = 'Basic ' + btoa(email + ':' + password);
+    console.log('authToken :: ', authToken);
+
+    $.ajax({
+      url        : apiClient.endPoints + apiClient.path.user.info,
+      headers    : {
+        "Authorization": 'Basic ' + btoa(email + ':' + password)
+      },
+      contentType: "application/json",
+      type       : 'GET',
+      cache      : false,
+      processData: false,
+      success    : function (response) {
+        console.log(response);
+        sessionStorage.setItem(loginInfoKey, JSON.stringify(response));
+
+        self.location = '/account/' + response.userToken;
+      }, error   : function (jqxhr) {
+        alert('올바르지 않은 ID/PASSWORD 입니다.');
+        console.log(jqxhr);
+      }
+    });
+  };
+
+  /**
+   * 로그아웃
+   */
+  var requestSignOut = function () {
+    sessionStorage.removeItem(loginInfoKey);
+    self.location = '/';
   };
 
   /**
@@ -93,17 +125,17 @@ var accountManager = (function () {
     var $target = $('#loginTemplateDiv');
     var $templateObj = $('#loginTemplate');
 
-    var loginInfo = sessionStorage.getItem("loginInfo");
-    var isSignedIn = false;
-
-    if (typeof loginInfo != "undefined" && loginInfo != null) {
-      isSignedIn = true;
-    }
+    var loginInfo = sessionStorage.getItem(loginInfoKey);
+    console.log('validator.isEmpty(loginInfo):', validator.isEmpty(loginInfo));
+    console.log('loginInfo != \'null\':', loginInfo != 'null');
+    console.log('loginInfo != null:', loginInfo != null);
+    var isSingedIn = !validator.isEmpty(loginInfo) && loginInfo != 'null' && loginInfo != null;
 
     var data = {
-      "isSingedIn": isSignedIn
+      "isSingedIn": isSingedIn
     };
 
+    console.log('check login info:', loginInfo, '\n', data);
     handlebarsManager.printTemplate(data, $target, $templateObj, 'html',
       null, null, true);
   };
@@ -112,6 +144,7 @@ var accountManager = (function () {
     getLoginInfo       : getLoginInfo,
     isSingedIn         : isSignedIn,
     requestSignIn      : requestSignIn,
+    requestSignOut     : requestSignOut,
     updateLoginTemplate: updateLoginTemplate
   };
 })();
@@ -137,7 +170,7 @@ var validator = (function () {
       return false;
     }
 
-    return input.length >= 6;
+    return input.length >= 1;
   };
 
   var isValidCellPhone = function (input) {

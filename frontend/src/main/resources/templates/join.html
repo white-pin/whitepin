@@ -538,6 +538,11 @@ Tip 2: you can also add an image using data-image tag
     },
     // returns join data or null if invalid
     getJoinData        : function () {
+      if(!$('#chkAgree1').prop('checked')
+         || !$('#chkAgree2').prop('checked')) {
+        alert('화이트핀 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.');
+        return;
+      }
 
       var ci = $('#ci').val();
       var di = $('#di').val();
