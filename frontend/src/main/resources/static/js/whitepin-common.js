@@ -99,6 +99,7 @@ var accountManager = (function () {
       cache      : false,
       processData: false,
       success    : function (response) {
+        response.authToken = authToken;
         console.log(response);
         sessionStorage.setItem(loginInfoKey, JSON.stringify(response));
 
