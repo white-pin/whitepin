@@ -2,7 +2,10 @@ var apiClient = (function () {
   const endPoints = "http://localhost:3030";
   const path = {
     identification: "/mock/identification",
-    join          : "/join"
+    join          : "/join",
+    user          : {
+      count : "/user/count"
+    }
   };
 
   var request = function (path, method, data, successHandler, errorHandler) {
