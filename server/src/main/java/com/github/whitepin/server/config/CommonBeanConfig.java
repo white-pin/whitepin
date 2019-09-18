@@ -4,8 +4,6 @@ import com.github.whitepin.sdk.contruct.FabricContruct;
 import com.github.whitepin.sdk.whitepin.invocation.ChaincodeInvocation;
 import com.github.whitepin.sdk.whitepin.invocation.ChaincodeInvocationImpl;
 import org.bouncycastle.jcajce.provider.digest.Keccak;
-import org.hyperledger.fabric.sdk.Channel;
-import org.hyperledger.fabric.sdk.HFClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -50,8 +50,8 @@ public class EvaluationService {
                         EvaluationAverageDTO.Average.builder()
                                 .division("1")
                                 .A(scoreConverter(userVo.getBuyAvg().getEvalAvg1()))
-                                .B(scoreConverter(userVo.getBuyAvg().getEvalAvg1()))
-                                .C(scoreConverter(userVo.getBuyAvg().getEvalAvg1()))
+                                .B(scoreConverter(userVo.getBuyAvg().getEvalAvg2()))
+                                .C(scoreConverter(userVo.getBuyAvg().getEvalAvg3()))
                                 .totalAverage(scoreConverter(userVo.getBuyAvg().getTotAvg()))
                                 .build())
                 .evaluationSell(
@@ -117,6 +117,6 @@ public class EvaluationService {
 
 
     private String scoreConverter(double score){
-        return new BigDecimal(score).setScale(1, RoundingMode.DOWN).toString();
+        return new BigDecimal(score).setScale(2, RoundingMode.HALF_UP).toString();
     }
 }

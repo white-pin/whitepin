@@ -67,7 +67,7 @@ public class EvaluationController {
                                                                        @ApiParam("Non-empty filterDivision value (buy or sell) ") @PathVariable(name = "filterDivision", required = true) String filterDivision
             , @ApiParam("Non-empty pageNumber") @PathVariable(name = "pageNumber", required = true) String pageNumber
             , @ApiParam("Non-empty orderType value (asc or desc, default:desc)") @PathVariable(name = "orderType", required = true) String orderType
-            , @ApiParam("Non-empty isEvaluationReceived value (true or false") @PathVariable(name = "isEvaluationReceived", required = true) boolean isEvaluationReceived
+            , @ApiParam("Non-empty isEvaluationReceived value (true or false)") @PathVariable(name = "isEvaluationReceived", required = true) boolean isEvaluationReceived
     ) throws Exception {
         return ResponseEntity.ok().body(evaluationService.getMyEvaluationList(
                 filterDivision
