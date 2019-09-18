@@ -235,6 +235,32 @@ Tip 2: you can also add an image using data-image tag
 
         accountManager.requestSignIn(email, password);
       });
+
+      /**
+       * form enter 처리
+       */
+      $('input[type="text"]').keydown(function (e) {
+        if (e.keyCode !== 13) {
+          return;
+        }
+
+        if (e.target.id == 'searchInput') {
+          $('#btnSearch').trigger('click');
+        } else {
+          e.preventDefault();
+        }
+      });
+
+      $('#btnSearch').on('click', function () {
+        var addr = $('#searchInput').val();
+        // if (addr === undefined || addr.length !== 64) {
+        if (addr === undefined || addr.length === '') {
+          alert('올바른 아이디를 입력해주세요.');
+          return;
+        }
+
+        self.location = "/account/" + addr;
+      });
     }
   };
 

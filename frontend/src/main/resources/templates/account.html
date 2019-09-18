@@ -109,111 +109,114 @@ Tip 2: you can also add an image using data-image tag
                     <h4 class="card-title">거래내역/평가 조회</h4>
                   </div>
                   <div class="col-md-2">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <span>
-                      내가 받은 점수
-                    </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <a class="dropdown-item" href="#">내가 받은 점수</a>
-                      <a class="dropdown-item" href="#">내가 남긴 점수</a>
-                    </ul>
+                    <div id="dropdownTemplateDiv" style="display: none;">
+                      <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-toggle="dropdown"
+                         id="scoreType" data-type="received">
+                        <span>내가 받은 점수</span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <a class="dropdown-item myScoreType" href="javascript:void(0);" data-type="received">내가
+                          받은 점수</a>
+                        <a class="dropdown-item myScoreType" href="javascript:void(0);" data-type="given">내가 남긴
+                          점수</a>
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <hr>
               </div>
               <div class="card-body">
-                <!-- 거래내역 평가 조회 -->
-                <div class="row" style="padding-left: 10px;">
-                  <!-- 좌측 평가 요약 정보 -->
-                  <div class="col-md-6">
-                    <div class="row">
-                      &nbsp;&nbsp;<i class="nc-icon nc-circle-09"></i>&nbsp;&nbsp;
-                      <p>0xbe0eb53f46cd790cd13851d5eff43d12404d33e8</p>
-                    </div>
+                <div id="summaryTemplateDiv">
+                  <!-- 거래내역 평가 조회 -->
+                  <!--<div class="row" style="padding-left: 10px;">
+                    &lt;!&ndash; 좌측 평가 요약 정보 &ndash;&gt;
+                    <div class="col-md-6">
+                      <div class="row">
+                        &nbsp;&nbsp;<i class="nc-icon nc-circle-09"></i>&nbsp;&nbsp;
+                        <p>0xbe0eb53f46cd790cd13851d5eff43d12404d33e8</p>
+                      </div>
 
-                    <div class="row">
-                      <table class="table">
-                        <thead>
-                        <tr>
-                          <th scope="col">구분</th>
-                          <th scope="col">A항목 평균</th>
-                          <th scope="col">B항목 평균</th>
-                          <th scope="col">C항목 평균</th>
-                          <th scope="col">전체 평균</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <th scope="row" style="background-color: #1F77D0">구매점수</th>
-                          <td>☆ 4.2</td>
-                          <td>☆ 2.5</td>
-                          <td>☆ 2.1</td>
-                          <td>☆ 2.9</td>
-                        </tr>
-                        <tr>
-                          <th scope="row" style="background-color: #FFC107">판매점수</th>
-                          <td>☆ 4.0</td>
-                          <td>☆ 2.2</td>
-                          <td>☆ 2.4</td>
-                          <td>☆ 2.8</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">합계</th>
-                          <td>☆ 4.1</td>
-                          <td>☆ 2.3</td>
-                          <td>☆ 2.2</td>
-                          <td>☆ 2.8</td>
-                        </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div><!-- ./ 좌측 평가 요약 정보 -->
+                      <div class="row">
+                        <table class="table">
+                          <thead>
+                          <tr>
+                            <th scope="col">구분</th>
+                            <th scope="col">A항목 평균</th>
+                            <th scope="col">B항목 평균</th>
+                            <th scope="col">C항목 평균</th>
+                            <th scope="col">전체 평균</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <th scope="row" style="background-color: #1F77D0">구매점수</th>
+                            <td>☆ 4.2</td>
+                            <td>☆ 2.5</td>
+                            <td>☆ 2.1</td>
+                            <td>☆ 2.9</td>
+                          </tr>
+                          <tr>
+                            <th scope="row" style="background-color: #FFC107">판매점수</th>
+                            <td>☆ 4.0</td>
+                            <td>☆ 2.2</td>
+                            <td>☆ 2.4</td>
+                            <td>☆ 2.8</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">합계</th>
+                            <td>☆ 4.1</td>
+                            <td>☆ 2.3</td>
+                            <td>☆ 2.2</td>
+                            <td>☆ 2.8</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>&lt;!&ndash; ./ 좌측 평가 요약 정보 &ndash;&gt;
 
-                  <!-- 우측 평가 -->
-                  <div class="col-md-6">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <h5 style="text-decoration: underline;">A 거래안정성</h5>
-                        <label>
-                          거래는 명시된대로 <br />
-                          잘 진행 되었습니까?
-                        </label>
+                    &lt;!&ndash; 우측 평가 &ndash;&gt;
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h5 style="text-decoration: underline;">A 거래안정성</h5>
+                          <label>
+                            거래는 명시된대로 <br />
+                            잘 진행 되었습니까?
+                          </label>
+                        </div>
+                        <div class="col-md-8">
+                          <div id="chartActivity1" class=""></div>
+                        </div>
                       </div>
-                      <div class="col-md-8">
-                        <div id="chartActivity1" class=""></div>
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-md-4">
-                        <h5 style="text-decoration: underline;">B 서비스/태도</h5>
-                        <label>
-                          거래를 진행하는데 상대방의 태도가 <br />
-                          우수했습니까?
-                        </label>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h5 style="text-decoration: underline;">B 서비스/태도</h5>
+                          <label>
+                            거래를 진행하는데 상대방의 태도가 <br />
+                            우수했습니까?
+                          </label>
+                        </div>
+                        <div class="col-md-8">
+                          <div id="chartActivity2" class=""></div>
+                        </div>
                       </div>
-                      <div class="col-md-8">
-                        <div id="chartActivity2" class=""></div>
-                      </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col-md-4">
-                        <h5 style="text-decoration: underline;">C 재거래의지</h5>
-                        <label>
-                          필요하다면 같거나 비슷한 상품에 대해<br />
-                          상대방과 다시 거래하실 의향이 있으십니까?
-                        </label>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h5 style="text-decoration: underline;">C 재거래의지</h5>
+                          <label>
+                            필요하다면 같거나 비슷한 상품에 대해<br />
+                            상대방과 다시 거래하실 의향이 있으십니까?
+                          </label>
+                        </div>
+                        <div class="col-md-8">
+                          <div id="chartActivity3" class=""></div>
+                        </div>
                       </div>
-                      <div class="col-md-8">
-                        <div id="chartActivity3" class=""></div>
-                      </div>
-                    </div>
-                  </div><!-- ./우측 평가 -->
+                    </div>&lt;!&ndash; ./우측 평가 &ndash;&gt;
+                  </div> -->
                 </div> <!-- ./거래내역 평가 조회 -->
-
-                <hr />
                 <!-- 거래 및 평가내역 -->
                 <div class="row" style="padding-left: 20px;">
                   &nbsp;&nbsp;<i class="nc-icon nc-satisfied"></i>&nbsp;&nbsp;
@@ -223,14 +226,11 @@ Tip 2: you can also add an image using data-image tag
                 <div class="row" style="padding-left: 20px;">
                   <div class="col-md-4">
                     <div class="btn-group" role="group">
-                      <button type="button" class="btn btn-secondary btn-search"
-                              data-type="all">전체
+                      <button type="button" class="btn btn-secondary btn-trade-list-type btn-fill"
+                              data-type="buy">구매&nbsp;점수
                       </button>
-                      <button type="button" class="btn btn-secondary btn-search"
-                              data-type="purchase">구매점수
-                      </button>
-                      <button type="button" class="btn btn-secondary btn-search"
-                              data-type="sell">판매점수
+                      <button type="button" class="btn btn-secondary btn-trade-list-type"
+                              data-type="sell">판매&nbsp;점수
                       </button>
                     </div>
                   </div>
@@ -241,71 +241,77 @@ Tip 2: you can also add an image using data-image tag
                     이미지 추가 + 괜찮은 거래상대 입니다.
                   </div>
                 </div>
-
                 <br />
-                <div class="row" style="padding-left: 20px;">
-                  <p>전체 거래 내역 <strong>154건</strong></p>
-                  <table class="table">
-                    <thead>
-                    <tr>
-                      <th scope="col" rowspan="2">구분</th>
-                      <th scope="col" rowspan="2">거래내역</th>
-                      <th scope="col" rowspan="2">거래상대</th>
-                      <th scope="col" rowspan="1" colspan="3">평가점수</th>
-                      <th scope="col" rowspan="2">평가 날짜</th>
-                      <th scope="col" rowspan="2">서비스</th>
-                    </tr>
-                    <tr>
-                      <th scope="col">A</th>
-                      <th scope="col">B</th>
-                      <th scope="col">C</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td scope="row" style="background-color: #1F77D0">구매점수</td>
-                      <td>0x11c74b67f08252162e14…</td>
-                      <td>0x9d86863c224cfba670e25…</td>
-                      <td>2.2</td>
-                      <td>2.5</td>
-                      <td>3.3</td>
-                      <td>2019-06-01</td>
-                      <td>에어비앤비</td>
-                    </tr>
-                    <tr>
-                      <td scope="row" style="background-color: #FFC107">판매점수</td>
-                      <td>0xddb30e27c5d7ad59f3bf…</td>
-                      <td>0x182187ec44f64c04b7412…</td>
-                      <td>4.5</td>
-                      <td>3.2</td>
-                      <td>2.2</td>
-                      <td>2019-06-01</td>
-                      <td>번개장터</td>
-                    </tr>
-                    </tbody>
-                  </table>
+                <div id="tradeListTemplateDiv">
+                  <div class="row" style="padding-left: 20px;">
+                    <p>전체 거래 내역 <strong>154건</strong></p>
+                    <table class="table">
+                      <thead>
+                      <tr>
+                        <th scope="col" rowspan="2">구분</th>
+                        <th scope="col" rowspan="2">거래내역</th>
+                        <th scope="col" rowspan="2">거래상대</th>
+                        <th scope="col" rowspan="1" colspan="3">평가점수</th>
+                        <th scope="col" rowspan="2">평가 날짜</th>
+                        <th scope="col" rowspan="2">서비스</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">A</th>
+                        <th scope="col">B</th>
+                        <th scope="col">C</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td scope="row" style="background-color: #1F77D0">구매점수</td>
+                        <td>0x11c74b67f08252162e14…</td>
+                        <td>0x9d86863c224cfba670e25…</td>
+                        <td>2.2</td>
+                        <td>2.5</td>
+                        <td>3.3</td>
+                        <td>2019-06-01</td>
+                        <td>에어비앤비</td>
+                      </tr>
+                      <tr>
+                        <td scope="row" style="background-color: #FFC107">판매점수</td>
+                        <td>0xddb30e27c5d7ad59f3bf…</td>
+                        <td>0x182187ec44f64c04b7412…</td>
+                        <td>4.5</td>
+                        <td>3.2</td>
+                        <td>2.2</td>
+                        <td>2019-06-01</td>
+                        <td>번개장터</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+                  <div class="row" style="padding-left: 20px;">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                      <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                          </li>
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+                    <div class="col-md-4"></div>
+                  </div>
                 </div>
-
                 <!-- ./거래 및 평가내역 -->
               </div>
             </div>
@@ -351,6 +357,102 @@ Tip 2: you can also add an image using data-image tag
   </ul>
 </script>
 
+<!-- 다른 유저 점수 -->
+<script id="userSummaryTemplate" type="text/x-handlebars-template">
+  <div class="row" style="padding-left: 10px;">
+    <div class="col-md-6">
+      <div class="row">
+        &nbsp;&nbsp;<i class="nc-icon nc-circle-09"></i>&nbsp;&nbsp;
+        <p>{{userToken}}</p>
+      </div>
+
+      <div class="row">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">구분</th>
+            <th scope="col">A항목 평균</th>
+            <th scope="col">B항목 평균</th>
+            <th scope="col">C항목 평균</th>
+            <th scope="col">전체 평균</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row" style="background-color: #1F77D0">구매점수</th>
+            <td>☆ {{evaluationBuy.a}}</td>
+            <td>☆ {{evaluationBuy.b}}</td>
+            <td>☆ {{evaluationBuy.c}}</td>
+            <td>☆ {{evaluationBuy.totalAverage}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="background-color: #FFC107">판매점수</th>
+            <td>☆ {{evaluationSell.a}}</td>
+            <td>☆ {{evaluationSell.b}}</td>
+            <td>☆ {{evaluationSell.c}}</td>
+            <td>☆ {{evaluationSell.totalAverage}}</td>
+          </tr>
+          <tr>
+            <th scope="row">합계</th>
+            <td>☆ {{evaluationSum.a}}</td>
+            <td>☆ {{evaluationSum.b}}</td>
+            <td>☆ {{evaluationSum.c}}</td>
+            <td>☆ {{evaluationSum.totalAverage}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <h5 style="text-decoration: underline;">A 거래안정성</h5>
+          <label>
+            거래는 명시된대로 <br />
+            잘 진행 되었습니까?
+          </label>
+        </div>
+        <div class="col-md-8">
+          <div id="chartActivity1" class=""></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h5 style="text-decoration: underline;">B 서비스/태도</h5>
+          <label>
+            거래를 진행하는데 상대방의 태도가 <br />
+            우수했습니까?
+          </label>
+        </div>
+        <div class="col-md-8">
+          <div id="chartActivity2" class=""></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h5 style="text-decoration: underline;">C 재거래의지</h5>
+          <label>
+            필요하다면 같거나 비슷한 상품에 대해<br />
+            상대방과 다시 거래하실 의향이 있으십니까?
+          </label>
+        </div>
+        <div class="col-md-8">
+          <div id="chartActivity3" class=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <hr />
+</script>
+<!-- 로그인 사용자 점수 -->
+<script id="summaryTemplate" type="text/x-handlebars-template">
+
+</script>
+
 <!--   Core JS Files   -->
 <script src="/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -374,8 +476,16 @@ Tip 2: you can also add an image using data-image tag
 <script type="text/javascript">
 
   window.account = {
-    currentSearchType: '',
-    init             : function () {
+    isMyPage              : false,  // 해당 유저 페이지 인지 여부
+    isGivenScore          : true,   // 마이페이지의 경우 내가 준 점수 인지 여부
+    addr                  : '',     // 현재 페이지의 addr
+    tradeCondition        : {       // 거래 및 평가내역 검색 조건
+      type      : 'buy',            // 거래 및 평가 내역 타입 (구매점수 | 판매점수)
+      pageNumber: 1,
+      sort      : 'desc'
+    },
+    init                  : function () {
+      var $self = window.account;
       accountManager.updateLoginTemplate();
 
       $('#logout').on('click', function () {
@@ -399,57 +509,186 @@ Tip 2: you can also add an image using data-image tag
 
       $('#btnSearch').on('click', function () {
         console.log('btnSearch click..');
-        var addr = $('#searchInput').val();
+        let addr = $('#searchInput').val();
 
-        // if (addr === undefined || addr.length !== 64) {
         if (validator.isEmpty(addr)) {
           alert('올바른 아이디를 입력해주세요.');
           return;
         }
 
-        this.location = "/account/" + addr;
+        self.location = "/account/" + addr;
       });
 
-      var self = window.account;
+      $('.myScoreType').on('click', function () {
+        $self.handleScoreTypeChanges($(this).data('type'));
+      });
 
-      // TODO : temp
-      /**
-       * draw charts
-       */
-      var data1 = {
-        labels: ['유저', '전체'],
-        series: [
-          [4.1], [3.8]
-        ]
-      };
-      self.drawBarChart('#chartActivity1', data1);
+      $('.btn-trade-list-type').on('click', function () {
+        $self.handleTradeTypeChanges($(this).data('type'));
+      });
 
-      var data2 = {
-        labels: ['유저', '전체'],
-        series: [
-          [2.3], [3.5]
-        ]
-      };
-      self.drawBarChart('#chartActivity2', data2);
-
-      var data3 = {
-        labels: ['유저', '전체'],
-        series: [
-          [2.2], [3.3]
-        ]
-      };
-      self.drawBarChart('#chartActivity3', data3);
-
-      /**
-       * draw scores
-       */
-      self.searchScores('all');
-      // -- TODO : temp
+      // 상단 평균 점수 갱신
+      $self.updateScoreSummary();
+      // 하단 거래 및 평가내역 갱신
+      $self.updateTradeList();
     },
+    /**
+     * 거래내역 점수 조회
+     */
+    updateScoreSummary    : function () {
+      let $self = window.account;
+      if (validator.isEmpty($self.addr)) {
+        let l = document.createElement("a");
+        l.href = window.location.href;
+        $self.addr = l.pathname.substring('/account/'.length);
+      }
 
-    drawBarChart: function (targetId, data) {
+      if (accountManager.isSingedIn()) {
+        let loginInfo = accountManager.getLoginInfo();
+        $self.isMyPage = $self.addr === loginInfo.userToken;
+      }
+
+      let path;
+      let type = 'GET';
+      let successHandler;
+      let errorHandler;
+
+      if ($self.isMyPage) {
+        $('#dropdownTemplateDiv').css('display', 'block');
+        $self.isGivenScore = $('#scoreType').data('type') === 'given';
+      }
+
+      // 내가 남긴 점수(마이 페이지)
+      if ($self.isGivenScore) {
+        // 상위 평균 점수 div 삭제
+        $('#summaryTemplateDiv').empty();
+      } else { // 받은 점수 (유저 or 다른 유저)
+        path = apiClient.path.evaluation.avg + '/' + $self.addr;
+        successHandler = function (data) {
+          console.log(data);
+          handlebarsManager.printTemplate(data, $('#summaryTemplateDiv'),
+            $('#userSummaryTemplate'), 'html', null, null, true);
+
+          // update charts
+          let aScoreData = {
+            labels: ['유저', '전체'],
+            series: [
+              [data.evaluationSum.a], [data.evaluationWhitepin.a]
+            ]
+          };
+          $self.drawBarChart('#chartActivity1', aScoreData);
+
+          let bScoreData = {
+            labels: ['유저', '전체'],
+            series: [
+              [data.evaluationSum.b], [data.evaluationWhitepin.b]
+            ]
+          };
+          $self.drawBarChart('#chartActivity2', bScoreData);
+
+          let cScoreData = {
+            labels: ['유저', '전체'],
+            series: [
+              [data.evaluationSum.c], [data.evaluationWhitepin.c]
+            ]
+          };
+          $self.drawBarChart('#chartActivity3', cScoreData);
+        };
+
+        errorHandler = function (jqxhr) {
+          console.log(jqxhr);
+          if (jqxhr.status == 404) {
+            // TODO : update not found
+            alert('TODO : update not found');
+          }
+        };
+        apiClient.request(path, type, null, successHandler, errorHandler);
+      }
+    },
+    /**
+     * 거래내역 리스트 갱신
+     * window.account.tradeCondition 에 있는 값을 기반으로 request 후 view update
+     */
+    updateTradeList       : function () {
+      let $self = window.account;
+      let path = '';
+      let type = 'GET';
+      let successHandler;
+      let errorHandler;
+
+      if ($self.isMyPage) {
+        // apiClient.path.evaluation.avg + '/' + $self.addr;
+        path = apiClient.path.evaluation.myList
+               + '/' + $self.tradeCondition.type
+               + '/' + $self.tradeCondition.pageNumber
+               + '/' + $self.tradeCondition.sort
+               + '/' + (($self.isGivenScore) ? 'false' : 'true');
+      } else {
+        path = apiClient.path.evaluation.list
+               + '/' + $self.addr
+               + '/' + $self.tradeCondition.type
+               + '/' + $self.tradeCondition.pageNumber
+               + '/' + $self.tradeCondition.sort;
+      }
+
+      successHandler = function (response) {
+        console.log('success to receive data\n', response);
+      };
+
+      errorHandler = function (jqxhr) {
+        console.log('failed to receive data\n', jqxhr);
+      };
+
+      console.log('will search trade list\n', $self.tradeCondition, '\n', path);
+      apiClient.request(path, type, null, successHandler, errorHandler);
+    },
+    /**
+     * 내가받은점수 / 내가 남긴점수 dropdown 변경 이벤트 처리
+     */
+    handleScoreTypeChanges: function (updateType) {
+      console.log('handleScoreTypeChanges :', updateType);
+      $scoreType = $('#scoreType');
+      let currentType = $scoreType.data('type');
+      if (updateType === currentType) {
+        return;
+      }
+
+      let text = (updateType === 'given') ? '내가 남긴 점수' : '내가 받은 점수';
+      let spanHtml = '<span>' + text + '</span>';
+      $scoreType.html(spanHtml);
+      $scoreType.data('type', updateType);
+
+      window.account.updateScoreSummary();
+      window.account.updateTradeList();
+    },
+    /**
+     * 구매점수/판매점수 버튼 변경 핸들링
+     */
+    handleTradeTypeChanges: function (searchType) {
+      let $self = window.account;
+      console.log('check trade type. current : ', $self.tradeCondition.type, " > ", searchType);
+      if ($self.tradeCondition.type == searchType) {
+        return;
+      }
+
+      $('.btn-trade-list-type').each(function () {
+        if ($(this).data('type') === searchType) {
+          $(this).addClass('btn-fill');
+        } else {
+          $(this).removeClass('btn-fill');
+        }
+      });
+
+      $self.tradeCondition.type = searchType;
+      $self.tradeCondition.pageNumber = 1;
+      $self.updateTradeList();
+    },
+    /**
+     * bar chart
+     */
+    drawBarChart          : function (targetId, data) {
       // https://gionkunz.github.io/chartist-js/api-documentation.html
-      var options = {
+      let options = {
         seriesBarDistance: 220,
         axisX            : {
           showGrid: false
@@ -465,7 +704,7 @@ Tip 2: you can also add an image using data-image tag
         }
       };
 
-      var responsiveOptions = [
+      let responsiveOptions = [
         ['screen and (max-width: 640px)', {
           seriesBarDistance: 5,
           axisX            : {
@@ -477,24 +716,6 @@ Tip 2: you can also add an image using data-image tag
       ];
 
       Chartist.Bar(targetId, data, options, responsiveOptions);
-    },
-    searchScores: function (searchType) {
-      var self = window.account;
-      console.log('current : ', self.currentSearchType, ", search : ", searchType);
-      // search score
-      if (self.currentSearchType == searchType) {
-        return;
-      }
-
-      $('.btn-search').each(function () {
-        if ($(this).data('type') === searchType) {
-          $(this).addClass('btn-fill');
-        } else {
-          $(this).removeClass('btn-fill');
-        }
-      });
-
-      self.currentSearchType = searchType;
     }
   };
 

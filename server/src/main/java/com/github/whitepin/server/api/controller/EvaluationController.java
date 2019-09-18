@@ -1,5 +1,6 @@
 package com.github.whitepin.server.api.controller;
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.github.whitepin.server.api.dto.EvaluationAverageDTO;
 import com.github.whitepin.server.api.dto.EvaluationListDTO;
 import com.github.whitepin.server.api.service.EvaluationService;
@@ -31,7 +32,12 @@ public class EvaluationController {
     @ApiRoleAccessNotes
     public ResponseEntity<EvaluationAverageDTO> getUserEvaluationAverage(@Valid
                                                                          @ApiParam("Non-empty userToken") @PathVariable(name = "userToken", required = true) String userToken) throws Exception {
-        return ResponseEntity.ok().body(evaluationService.getUserEvaluationAverage(userToken));
+
+        try {
+            return ResponseEntity.ok().body(evaluationService.getUserEvaluationAverage(userToken));
+        } catch(MismatchedInputException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/evaluation/list/{userToken}/{filterDivision}/{pageNumber}/{orderType}", produces = MediaType.APPLICATION_JSON_VALUE)

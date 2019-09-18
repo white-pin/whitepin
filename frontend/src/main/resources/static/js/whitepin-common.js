@@ -3,6 +3,11 @@ var apiClient = (function () {
   const path = {
     identification: "/mock/identification",
     join          : "/join",
+    evaluation    : {
+      avg   : '/evaluation/avg', // /evaluation/avg/{userToken}
+      list  : '/evaluation/list', // /evaluation/list/{userToken}/{filterDivision}/{pageNumber}/{orderType}
+      myList: '/evaluation/myList' // /evaluation/myList/{filterDivision}/{pageNumber}/{orderType}/{isEvaluationReceived}
+    },
     user          : {
       count: "/user/count",
       info : "/user/info"
