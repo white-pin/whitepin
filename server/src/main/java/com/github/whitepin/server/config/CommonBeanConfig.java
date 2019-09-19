@@ -1,13 +1,14 @@
 package com.github.whitepin.server.config;
 
-import com.github.whitepin.sdk.contruct.FabricContruct;
-import com.github.whitepin.sdk.whitepin.invocation.ChaincodeInvocation;
-import com.github.whitepin.sdk.whitepin.invocation.ChaincodeInvocationImpl;
 import org.bouncycastle.jcajce.provider.digest.Keccak;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.github.whitepin.sdk.contruct.FabricContruct;
+import com.github.whitepin.sdk.whitepin.invocation.ChaincodeInvocation;
+import com.github.whitepin.sdk.whitepin.invocation.ChaincodeInvocationImpl;
 
 @Configuration
 public class CommonBeanConfig {
@@ -33,5 +34,4 @@ public class CommonBeanConfig {
     public ChaincodeInvocation chaincodeInvocation() {
         return new ChaincodeInvocationImpl();
     }
-
 }

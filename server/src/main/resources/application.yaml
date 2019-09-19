@@ -11,6 +11,12 @@ spring:
         format_sql: true
         enable_lazy_load_no_trans: true
 
+batch:
+  txSync:
+    enable: false
+    initDelay: 5000
+    period: 5000
+
 
 ---
 # local profile
