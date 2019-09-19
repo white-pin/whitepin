@@ -1,12 +1,13 @@
 package com.github.whitepin.server;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.util.StringUtils;
 
-import java.util.HashSet;
-import java.util.Set;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication

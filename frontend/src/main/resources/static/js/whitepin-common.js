@@ -1,3 +1,6 @@
+/**
+ * Api client
+ */
 var apiClient = (function () {
   const endPoints = "http://localhost:3030";
   const path = {
@@ -15,26 +18,25 @@ var apiClient = (function () {
   };
 
   var request = function (path, method, data, successHandler, errorHandler) {
-
     $.ajax({
-      url        : endPoints + path,
-      headers    : {
+      url         : endPoints + path,
+      headers     : {
         dataType: 'json'
       },
-      contentType: "application/json",
-      type       : method,
-      data       : data,
-      cache      : false,
-      processData: false,
-      success    : function (response) {
+      contentType : "application/json",
+      type        : method,
+      data        : data,
+      cache       : false,
+      processData : false,
+      success     : function (response) {
         successHandler(response);
       }
-      , error   : function (jqxhr) {
+      , error     : function (jqxhr) {
         errorHandler(jqxhr);
       }
       , beforeSend: function (jqxhr) {
-        if(accountManager.isSignedIn()) {
-          jqxhr.setRequestHeader ("Authorization", accountManager.getLoginInfo().authToken);
+        if (accountManager.isSignedIn()) {
+          jqxhr.setRequestHeader("Authorization", accountManager.getLoginInfo().authToken);
         }
       },
     });
@@ -47,6 +49,9 @@ var apiClient = (function () {
   };
 })();
 
+/**
+ * Handlebars
+ */
 var handlebarsManager = (function () {
   var printTemplate = function (data, target, templateObject, type, prefixHtml, suffixHtml, clear) {
     if (clear) {
@@ -80,6 +85,67 @@ var handlebarsManager = (function () {
   };
 })();
 
+Handlebars.registerHelper("getLength", function (arr) {
+  return (!arr) ? 0 : arr.length;
+});
+
+Handlebars.registerHelper("trimHashValue", function (hashValue) {
+  if (validator.isEmpty(hashValue)) {
+    return hashValue;
+  }
+
+  if (!hashValue.startsWith('0x')) {
+    hashValue = '0x' + hashValue;
+  }
+
+  if (hashValue.length > 20) {
+    return hashValue.substring(0, 20) + '...';
+  }
+
+  return hashValue;
+});
+
+Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
+  console.log('compare arg1:', arg1, ', arg2:', arg2);
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
+Handlebars.registerHelper("displayTimestamp", function (timestamp) {
+  if (!timestamp) {
+    return "";
+  }
+
+  try {
+    // Copy from https://stackoverflow.com/questions/23593052/format-javascript-date-as-yyyy-mm-dd
+    var d = new Date(timestamp),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) {
+      month = '0' + month;
+    }
+    if (day.length < 2) {
+      day = '0' + day;
+    }
+    return [year, month, day].join('-');
+  } catch (e) {
+    console.error(e);
+    return 'Unknown';
+  }
+});
+
+Handlebars.registerHelper('for', function (from, to, incr, block) {
+  var accum = '';
+  for (var i = from; i < to; i += incr) {
+    accum += block.fn(i);
+  }
+  return accum;
+});
+
+/**
+ * Account manager
+ */
 var accountManager = (function () {
   const loginInfoKey = 'loginInfo';
   /**
@@ -162,6 +228,9 @@ var accountManager = (function () {
   };
 })();
 
+/**
+ * Common Validator
+ */
 var validator = (function () {
   var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   var cellphoneRegex = /^[0-9]{3}[-]+[0-9]{3,4}[-]+[0-9]{4}$/;

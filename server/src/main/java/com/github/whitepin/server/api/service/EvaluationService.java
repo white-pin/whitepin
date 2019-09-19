@@ -1,5 +1,15 @@
 package com.github.whitepin.server.api.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
 import com.github.whitepin.sdk.contruct.FabricContruct;
 import com.github.whitepin.sdk.whitepin.context.ConditionType;
 import com.github.whitepin.sdk.whitepin.context.OrderType;
@@ -13,15 +23,6 @@ import com.github.whitepin.server.api.dto.EvaluationListDTO;
 import com.github.whitepin.server.api.dto.UserDTO;
 import com.github.whitepin.server.api.entity.UserEntity;
 import com.github.whitepin.server.api.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.List;
 
 @Service
 public class EvaluationService {

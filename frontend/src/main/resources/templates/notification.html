@@ -101,23 +101,8 @@ Tip 2: you can also add an image using data-image tag
           </ul>
 
           <!-- navbar right -->
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/login">
-                <span class="no-icon">로그인</span>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="/accounts/edit">
-                <span class="no-icon">내 거래내역/평가</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">
-                <span class="no-icon">로그아웃</span>
-              </a>
-            </li>
-          </ul> <!-- ./navbar right -->
+          <div id="loginTemplateDiv"></div>
+          <!-- ./navbar right -->
         </div>
       </div>
     </nav>
@@ -181,33 +166,80 @@ Tip 2: you can also add an image using data-image tag
 </div>
 </body>
 <!--   Core JS Files   -->
-<script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="assets/js/plugins/bootstrap-switch.js"></script>
+<script src="/assets/js/plugins/bootstrap-switch.js"></script>
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!--  Chartist Plugin  -->
-<script src="assets/js/plugins/chartist.min.js"></script>
+<script src="/assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="assets/js/plugins/bootstrap-notify.js"></script>
+<script src="/assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<script src="/assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
+<script src="/assets/js/demo.js"></script>
+
+<!-- handlebars js -->
+<script src="/webjars/handlebars/4.0.11-1/handlebars.min.js"></script>
+<!-- whitepin common js -->
+<script src="/js/whitepin-common.js"></script>
+
+<script id="loginTemplate" type="text/x-handlebars-template">
+  <ul class="navbar-nav ml-auto">
+    {{#if isSignedIn}}
+    <li class="nav-item dropdown">
+      <a class="nav-link" href="javascript:void(0);" id="mypage">
+        <span class="no-icon">내 거래내역/평가</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="javascript:void(0);" id="logout">
+        <span class="no-icon">로그아웃</span>
+      </a>
+    </li>
+    {{else}}
+    <li class="nav-item">
+      <a class="nav-link" href="/login">
+        <span class="no-icon">로그인</span>
+      </a>
+    </li>
+    {{/if}}
+  </ul>
+</script>
 
 <script type="text/javascript">
   $(document).ready(function () {
+    accountManager.updateLoginTemplate();
 
-    $('#btnVerification').on('click', function () {
-      alert("인증하기");
+    /**
+     * form enter 처리
+     */
+    $('input[type="text"]').keydown(function (e) {
+      if (e.keyCode !== 13) {
+        return;
+      }
+
+      if (e.target.id == 'searchInput') {
+        $('#btnSearch').trigger('click');
+      } else {
+        e.preventDefault();
+      }
     });
 
-    $('#btnJoin').on('click', function () {
-      alert("가입하기");
-    });
+    $('#btnSearch').on('click', function () {
+      console.log('btnSearch click..');
+      let addr = $('#searchInput').val();
 
+      if (validator.isEmpty(addr)) {
+        alert('올바른 아이디를 입력해주세요.');
+        return;
+      }
+
+      self.location = "/account/" + addr;
+    });
   });
 </script>
 

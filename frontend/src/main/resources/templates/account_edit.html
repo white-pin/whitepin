@@ -104,7 +104,7 @@ Tip 2: you can also add an image using data-image tag
                   <i class="fa fa-circle text-info"></i> 연결 서비스 <span class="text-info" id="connectedServiceCount">0건</span>
                   <i class="fa fa-circle text-danger"></i> 거래내역 <span class="text-danger" id="transactionCount">0건</span>
                   <i class="fa fa-circle text-warning"></i> 내가 받은 평가 <span class="text-warning" id="evaluationReceivedCount">0건</span>
-                  <i class="fa fa-circle text-success"></i> 내가 남긴 평가 <span class="text-success" id="myLeftEvaluationCount">0건</span>
+                  <!--<i class="fa fa-circle text-success"></i> 내가 남긴 평가 <span class="text-success" id="myLeftEvaluationCount">0건</span>-->
                 </div>
               </div>
               <div class="card-body">
@@ -255,6 +255,7 @@ Tip 2: you can also add an image using data-image tag
         var type = 'GET';
 
         var successHandler = function (response) {
+          response.userToken = '0x' + response.userToken;
             response.createDate = '[' + $timeConverter(response.createDate) + ' 발급]';
             for(var key in response){
                 var $tag = $('#'+key);

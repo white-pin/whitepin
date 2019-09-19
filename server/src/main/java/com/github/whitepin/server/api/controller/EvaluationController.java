@@ -52,13 +52,17 @@ public class EvaluationController {
             , @ApiParam("Non-empty pageNumber") @PathVariable(name = "pageNumber", required = true) String pageNumber
             , @ApiParam("Non-empty orderType value (asc or desc, default:desc)") @PathVariable(name = "orderType", required = true) String orderType
     ) throws Exception {
-        return ResponseEntity.ok().body(evaluationService.getUserEvaluationList(
-                userToken
-                , filterDivision
-                , pageNumber
-                , orderType
-                , true
-        ));
+        try {
+            return ResponseEntity.ok().body(evaluationService.getUserEvaluationList(
+                    userToken
+                    , filterDivision
+                    , pageNumber
+                    , orderType
+                    , true
+            ));
+        } catch(MismatchedInputException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/evaluation/myList/{filterDivision}/{pageNumber}/{orderType}/{isEvaluationReceived}", produces = MediaType.APPLICATION_JSON_VALUE)
