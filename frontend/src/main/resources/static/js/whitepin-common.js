@@ -10,6 +10,7 @@ var apiClient = (function () {
   };
 
   var request = function (path, method, data, successHandler, errorHandler) {
+
     $.ajax({
       url        : endPoints + path,
       headers    : {
@@ -22,9 +23,15 @@ var apiClient = (function () {
       processData: false,
       success    : function (response) {
         successHandler(response);
-      }, error   : function (jqxhr) {
+      }
+      , error   : function (jqxhr) {
         errorHandler(jqxhr);
       }
+      , beforeSend: function (jqxhr) {
+        if(accountManager.isSignedIn()) {
+          jqxhr.setRequestHeader ("Authorization", accountManager.getLoginInfo().authToken);
+        }
+      },
     });
   };
 
@@ -130,10 +137,10 @@ var accountManager = (function () {
     console.log('validator.isEmpty(loginInfo):', validator.isEmpty(loginInfo));
     console.log('loginInfo != \'null\':', loginInfo != 'null');
     console.log('loginInfo != null:', loginInfo != null);
-    var isSingedIn = !validator.isEmpty(loginInfo) && loginInfo != 'null' && loginInfo != null;
+    var isSignedIn = !validator.isEmpty(loginInfo) && loginInfo != 'null' && loginInfo != null;
 
     var data = {
-      "isSingedIn": isSingedIn
+      "isSignedIn": isSignedIn
     };
 
     console.log('check login info:', loginInfo, '\n', data);
@@ -143,7 +150,7 @@ var accountManager = (function () {
 
   return {
     getLoginInfo       : getLoginInfo,
-    isSingedIn         : isSignedIn,
+    isSignedIn         : isSignedIn,
     requestSignIn      : requestSignIn,
     requestSignOut     : requestSignOut,
     updateLoginTemplate: updateLoginTemplate

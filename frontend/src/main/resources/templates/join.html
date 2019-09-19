@@ -355,7 +355,7 @@ Tip 2: you can also add an image using data-image tag
 
 <script id="loginTemplate" type="text/x-handlebars-template">
   <ul class="navbar-nav ml-auto">
-    {{#if isSingedIn}}
+    {{#if isSignedIn}}
     <li class="nav-item dropdown">
       <a class="nav-link" href="/accounts/edit">
         <span class="no-icon">내 거래내역/평가</span>
@@ -462,13 +462,6 @@ Tip 2: you can also add an image using data-image tag
         }
       });
 
-      /**
-       * 이미 로그인 한 상태인지 체크
-       */
-      if (accountManager.isSingedIn()) {
-        console.log('already signed in');
-        self.location = "/accounts/edit";
-      }
       accountManager.updateLoginTemplate();
 
       /**

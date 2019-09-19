@@ -68,7 +68,7 @@ Tip 2: you can also add an image using data-image tag
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/join">
+          <a class="nav-link" href="/join" id="joinOrEdit">
             <i class="nc-icon nc-circle-09"></i>
             <p>화이트핀 발급/관리</p>
           </a>
@@ -206,11 +206,11 @@ Tip 2: you can also add an image using data-image tag
                           <div class="row">
                             <div class="col-md-6">
                               누적 사용자 <br />
-                              <h1><span id="userCount">8,750</span>명</h1>
+                              <h1><span id="userCount"></span></h1>
                             </div>
                             <div class="col-md-6">
                               누적 거래내역 <br />
-                              <h1><span id="transactionCount">780,154</span>건</h1>
+                              <h1><span id="transactionCount"></span></h1>
                             </div>
                           </div>
                         </td>
@@ -241,7 +241,7 @@ Tip 2: you can also add an image using data-image tag
 
 <script id="loginTemplate" type="text/x-handlebars-template">
   <ul class="navbar-nav ml-auto">
-    {{#if isSingedIn}}
+    {{#if isSignedIn}}
     <li class="nav-item dropdown">
       <a class="nav-link" href="javascript:void(0);" id="mypage">
         <span class="no-icon">내 거래내역/평가</span>
@@ -289,6 +289,10 @@ Tip 2: you can also add an image using data-image tag
     init: function () {
       accountManager.updateLoginTemplate();
 
+      if(accountManager.isSignedIn()) {
+          $('#joinOrEdit').attr('href', '/accounts/edit');
+      }
+
       /**
        * form enter 처리
        */
@@ -331,8 +335,8 @@ Tip 2: you can also add an image using data-image tag
       var type = 'GET';
 
       var successHandler = function (response) {
-        $('#userCount').text(response.user.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-        $('#transactionCount').text(response.transaction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        $('#userCount').text(response.user.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "명");
+        $('#transactionCount').text(response.transaction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "건");
       };
 
       var errorHandler = function (jqxhr) {
