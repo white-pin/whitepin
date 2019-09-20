@@ -13,7 +13,7 @@ spring:
 
 batch:
   txSync:
-    enable: false
+    enable: true
     initDelay: 5000
     period: 5000
 
