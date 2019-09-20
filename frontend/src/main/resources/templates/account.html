@@ -36,6 +36,25 @@
     .btn {
       cursor: pointer;
     }
+    caption {
+      color: #868e96;
+      text-align: left;
+      caption-side: top;
+      padding-left: 10px;
+      padding-bottom: 0px;
+    }
+    .table>thead>tr>th {
+      border-bottom-width: 1px;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #9A9A9A;
+      font-weight: 400;
+      padding-bottom: 5px;
+      border-top: none !important;
+      border-bottom: none;
+      text-align: center !important;
+      font-size: medium;
+    }
   </style>
 </head>
 <body>
@@ -61,7 +80,7 @@ Tip 2: you can also add an image using data-image tag
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/accounts/edit">
+          <a class="nav-link" href="/join" id="joinOrEdit">
             <i class="nc-icon nc-circle-09"></i>
             <p>화이트핀 발급/관리</p>
           </a>
@@ -99,22 +118,34 @@ Tip 2: you can also add an image using data-image tag
     </nav>
     <!-- End Navbar -->
     <div class="content">
+
+
+
       <div class="container-fluid">
-        <div class="row">
+        <div id="summaryTemplateDiv"></div>
+        <div id="tradesTemplateMainDiv" class="row" style="display: none;">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-md-10">
-                    <h4 class="card-title">거래내역/평가 조회</h4>
+                  <div class="col-sm">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-secondary btn-trade-list-type btn-fill"
+                              data-type="buy">구매&nbsp;점수
+                      </button>
+                      <button type="button" class="btn btn-secondary btn-trade-list-type"
+                              data-type="sell">판매&nbsp;점수
+                      </button>
+                    </div>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-sm"></div>
+                  <div class="col-sm text-right">
                     <div id="dropdownTemplateDiv" style="display: none;">
                       <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-toggle="dropdown"
                          id="scoreType" data-type="received">
                         <span>내가 받은 점수</span>
                       </a>
-                      <ul class="dropdown-menu">
+                      <ul class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item myScoreType" href="javascript:void(0);" data-type="received">내가
                           받은 점수</a>
                         <a class="dropdown-item myScoreType" href="javascript:void(0);" data-type="given">내가 남긴
@@ -125,116 +156,10 @@ Tip 2: you can also add an image using data-image tag
                 </div>
                 <hr>
               </div>
-              <div class="card-body">
-                <div id="summaryTemplateDiv">
-                  <!-- 거래내역 평가 조회 -->
-                  <!--<div class="row" style="padding-left: 10px;">
-                    &lt;!&ndash; 좌측 평가 요약 정보 &ndash;&gt;
-                    <div class="col-md-6">
-                      <div class="row">
-                        &nbsp;&nbsp;<i class="nc-icon nc-circle-09"></i>&nbsp;&nbsp;
-                        <p>0xbe0eb53f46cd790cd13851d5eff43d12404d33e8</p>
-                      </div>
-
-                      <div class="row">
-                        <table class="table">
-                          <thead>
-                          <tr>
-                            <th scope="col">구분</th>
-                            <th scope="col">A항목 평균</th>
-                            <th scope="col">B항목 평균</th>
-                            <th scope="col">C항목 평균</th>
-                            <th scope="col">전체 평균</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                            <th scope="row" style="background-color: #1F77D0">구매점수</th>
-                            <td>☆ 4.2</td>
-                            <td>☆ 2.5</td>
-                            <td>☆ 2.1</td>
-                            <td>☆ 2.9</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" style="background-color: #FFC107">판매점수</th>
-                            <td>☆ 4.0</td>
-                            <td>☆ 2.2</td>
-                            <td>☆ 2.4</td>
-                            <td>☆ 2.8</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">합계</th>
-                            <td>☆ 4.1</td>
-                            <td>☆ 2.3</td>
-                            <td>☆ 2.2</td>
-                            <td>☆ 2.8</td>
-                          </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>&lt;!&ndash; ./ 좌측 평가 요약 정보 &ndash;&gt;
-
-                    &lt;!&ndash; 우측 평가 &ndash;&gt;
-                    <div class="col-md-6">
-                      <div class="row">
-                        <div class="col-md-4">
-                          <h5 style="text-decoration: underline;">A 거래안정성</h5>
-                          <label>
-                            거래는 명시된대로 <br />
-                            잘 진행 되었습니까?
-                          </label>
-                        </div>
-                        <div class="col-md-8">
-                          <div id="chartActivity1" class=""></div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-4">
-                          <h5 style="text-decoration: underline;">B 서비스/태도</h5>
-                          <label>
-                            거래를 진행하는데 상대방의 태도가 <br />
-                            우수했습니까?
-                          </label>
-                        </div>
-                        <div class="col-md-8">
-                          <div id="chartActivity2" class=""></div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-4">
-                          <h5 style="text-decoration: underline;">C 재거래의지</h5>
-                          <label>
-                            필요하다면 같거나 비슷한 상품에 대해<br />
-                            상대방과 다시 거래하실 의향이 있으십니까?
-                          </label>
-                        </div>
-                        <div class="col-md-8">
-                          <div id="chartActivity3" class=""></div>
-                        </div>
-                      </div>
-                    </div>&lt;!&ndash; ./우측 평가 &ndash;&gt;
-                  </div> -->
-                </div> <!-- ./거래내역 평가 조회 -->
+              <div class="card-body" style="padding-top: 0px;">
                 <!-- 거래 및 평가내역 -->
                 <div id="tradeListDiv">
                   <div class="row" style="padding-left: 20px;">
-                    &nbsp;&nbsp;<i class="nc-icon nc-satisfied"></i>&nbsp;&nbsp;
-                    <p>거래 및 평가내역(아이콘 찾아야함)</p>
-                  </div>
-
-                  <div class="row" style="padding-left: 20px;">
-                    <div class="col-md-4">
-                      <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-secondary btn-trade-list-type btn-fill"
-                                data-type="buy">구매&nbsp;점수
-                        </button>
-                        <button type="button" class="btn btn-secondary btn-trade-list-type"
-                                data-type="sell">판매&nbsp;점수
-                        </button>
-                      </div>
-                    </div>
                     <div class="col-md-4">
 
                     </div>
@@ -292,94 +217,105 @@ Tip 2: you can also add an image using data-image tag
 
 <!-- 유저 점수 -->
 <script id="summaryTemplate" type="text/x-handlebars-template">
-  <div class="row" style="padding-left: 10px;">
+  <div class="row">
     <div class="col-md-6">
-      <div class="row">
-        &nbsp;&nbsp;<i class="nc-icon nc-circle-09"></i>&nbsp;&nbsp;
-        <p>{{userToken}}</p>
-      </div>
-
-      <div class="row">
-        <table class="table">
-          <thead>
-          <tr>
-            <th scope="col">구분</th>
-            <th scope="col">A항목 평균</th>
-            <th scope="col">B항목 평균</th>
-            <th scope="col">C항목 평균</th>
-            <th scope="col">전체 평균</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row" style="background-color: #1F77D0">구매점수</th>
-            <td>☆ {{evaluationBuy.a}}</td>
-            <td>☆ {{evaluationBuy.b}}</td>
-            <td>☆ {{evaluationBuy.c}}</td>
-            <td>☆ {{evaluationBuy.totalAverage}}</td>
-          </tr>
-          <tr>
-            <th scope="row" style="background-color: #FFC107">판매점수</th>
-            <td>☆ {{evaluationSell.a}}</td>
-            <td>☆ {{evaluationSell.b}}</td>
-            <td>☆ {{evaluationSell.c}}</td>
-            <td>☆ {{evaluationSell.totalAverage}}</td>
-          </tr>
-          <tr>
-            <th scope="row">합계</th>
-            <td>☆ {{evaluationSum.a}}</td>
-            <td>☆ {{evaluationSum.b}}</td>
-            <td>☆ {{evaluationSum.c}}</td>
-            <td>☆ {{evaluationSum.totalAverage}}</td>
-          </tr>
-          </tbody>
-        </table>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">거래내역/평가 조회</h4>
+          <div class="card-category legend">
+            <i class="fa fa-address-card-o"></i> 0x{{userToken}}
+          </div>
+        </div>
+        <div class="card-body table-full-width table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">구분</th>
+              <th scope="col">A항목 평균</th>
+              <th scope="col">B항목 평균</th>
+              <th scope="col">C항목 평균</th>
+              <th scope="col">전체 평균</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>구매점수</td>
+              <td class="text-center">☆ {{evaluationBuy.a}}</td>
+              <td class="text-center">☆ {{evaluationBuy.b}}</td>
+              <td class="text-center">☆ {{evaluationBuy.c}}</td>
+              <td class="text-center">☆ {{evaluationBuy.totalAverage}}</td>
+            </tr>
+            <tr>
+              <td>판매점수</td>
+              <td class="text-center">☆ {{evaluationSell.a}}</td>
+              <td class="text-center">☆ {{evaluationSell.b}}</td>
+              <td class="text-center">☆ {{evaluationSell.c}}</td>
+              <td class="text-center">☆ {{evaluationSell.totalAverage}}</td>
+            </tr>
+            <tr class="table-info">
+              <td>합계</td>
+              <td class="text-center">☆ {{evaluationSum.a}}</td>
+              <td class="text-center">☆ {{evaluationSum.b}}</td>
+              <td class="text-center">☆ {{evaluationSum.c}}</td>
+              <td class="text-center">☆ {{evaluationSum.totalAverage}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
+
     <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-4">
-          <h5 style="text-decoration: underline;">A 거래안정성</h5>
-          <label>
-            거래는 명시된대로 <br />
-            잘 진행 되었습니까?
-          </label>
-        </div>
-        <div class="col-md-8">
-          <div id="chartActivity1" class=""></div>
-        </div>
-      </div>
+      <div class="card card-user">
+        <div class="card-body">
+          <div class="col">
+            <div class="row">
+              <div class="col-md-4">
+                <h5>
+                  <u>A 거래안정성</u>
+                </h5>
+                <label>
+                  거래는 명시된대로 잘 진행 되었습니까?
+                </label>
+              </div>
+              <div class="col-md-8">
+                <div id="chartActivity1" class=""></div>
+              </div>
+            </div>
 
-      <div class="row">
-        <div class="col-md-4">
-          <h5 style="text-decoration: underline;">B 서비스/태도</h5>
-          <label>
-            거래를 진행하는데 상대방의 태도가 <br />
-            우수했습니까?
-          </label>
-        </div>
-        <div class="col-md-8">
-          <div id="chartActivity2" class=""></div>
-        </div>
-      </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5>
+                  <u>B 서비스/태도</u>
+                </h5>
+                <label>
+                  거래를 진행하는데 상대방의 태도가 우수했습니까?
+                </label>
+              </div>
+              <div class="col-md-8">
+                <div id="chartActivity2" class=""></div>
+              </div>
+            </div>
 
-      <div class="row">
-        <div class="col-md-4">
-          <h5 style="text-decoration: underline;">C 재거래의지</h5>
-          <label>
-            필요하다면 같거나 비슷한 상품에 대해<br />
-            상대방과 다시 거래하실 의향이 있으십니까?
-          </label>
-        </div>
-        <div class="col-md-8">
-          <div id="chartActivity3" class=""></div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5>
+                  <u>C 재거래의지</u>
+                </h5>
+                <label>
+                  필요하다면 같거나 비슷한 상품에 대해 상대방과 다시 거래하실 의향이 있으십니까?
+                </label>
+              </div>
+              <div class="col-md-8">
+                <div id="chartActivity3" class=""></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <br />
-  <hr />
 </script>
 
 <script id="notFoundTemplate" type="text/x-handlebars-template">
@@ -396,39 +332,39 @@ Tip 2: you can also add an image using data-image tag
 
 <!-- 거래 및 평가내역 -->
 <script id="tradesTemplate" type="text/x-handlebars-template">
-  <div class="row" style="padding-left: 20px;">
-    <p>전체 거래 내역 <strong>{{totalCount}}</strong></p>
-    <table class="table">
+  <div class="row table-full-width">
+    <table class="table table-hover table-striped">
+      <caption>전체 거래 내역 {{totalCount}}</caption>
       <thead>
       <tr>
-        <th scope="col" rowspan="2">구분</th>
-        <th scope="col" rowspan="2">거래내역</th>
-        <th scope="col" rowspan="2">거래상대</th>
-        <th scope="col" rowspan="1" colspan="3">평가점수</th>
-        <th scope="col" rowspan="2">평가 날짜</th>
-        <th scope="col" rowspan="2">서비스</th>
+        <th scope="col" rowspan="2" style="width:10%;">구분</th>
+        <th scope="col" rowspan="2" style="width:19%;">거래내역</th>
+        <th scope="col" rowspan="2" style="width:19%;">거래상대</th>
+        <th scope="col" rowspan="1" colspan="3" style="">평가점수</th>
+        <th scope="col" rowspan="2" style="width:13%;">평가 날짜</th>
+        <th scope="col" rowspan="2" class="d-table-cell" style="">서비스</th>
       </tr>
       <tr>
         <th scope="col">A</th>
         <th scope="col">B</th>
-        <th scope="col">C</th>
+        <th scope="col" class="d-table-cell">C</th>
       </tr>
       </thead>
       <tbody>
       {{#each transaction}}
       <tr>
         {{#ifEquals division "buy"}}
-        <td scope="row" style="background-color: #1F77D0">구매점수</td>
+        <td scope="row">구매점수</td>
         {{else}}
-        <td scope="row" style="background-color: #FFC107">판매점수</td>
+        <td scope="row">판매점수</td>
         {{/ifEquals}}
         <td>{{#trimHashValue transactionHash}}{{/trimHashValue}}</td>
         <td>{{#trimHashValue targetUserToken}}{{/trimHashValue}}</td>
-        <td>{{a}}</td>
-        <td>{{b}}</td>
-        <td>{{c}}</td>
+        <td class="text-center">{{a}}</td>
+        <td class="text-center">{{b}}</td>
+        <td class="text-center">{{c}}</td>
         <td>{{#displayTimestamp evaluationDate}}{{/displayTimestamp}}</td>
-        <td>{{partnerCode}}</td>
+        <td class="text-center d-table-cell">{{partnerCode}}</td>
       </tr>
       {{/each}}
       </tbody>
@@ -437,8 +373,8 @@ Tip 2: you can also add an image using data-image tag
 
   {{!-- pagination --}}
   <div class="row" style="padding-left: 20px;">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
+    <div class="col-sm"></div>
+    <div class="col-sm">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           {{#if page.hasPrev}}
@@ -488,7 +424,7 @@ Tip 2: you can also add an image using data-image tag
         </ul>
       </nav>
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-sm"></div>
   </div>
 </script>
 
@@ -587,6 +523,7 @@ Tip 2: you can also add an image using data-image tag
       }
 
       if (accountManager.isSignedIn()) {
+        $('#joinOrEdit').attr('href', '/accounts/edit');
         let loginInfo = accountManager.getLoginInfo();
         $self.isMyPage = $self.addr === loginInfo.userToken;
       }
@@ -677,6 +614,8 @@ Tip 2: you can also add an image using data-image tag
       successHandler = function (data) {
         console.log('success to receive trade list data\n', data);
 
+        $('#tradesTemplateMainDiv').css('display', 'block');
+
         data.page = window.account.createPageMaker(data.pageNumber, data.totalCount, data.pagingSize, 10);
         console.log('trade list template :\n', data.page);
         handlebarsManager.printTemplate(data, $('#tradesTemplateDiv'), $('#tradesTemplate'), 'html', null, null,
@@ -710,6 +649,7 @@ Tip 2: you can also add an image using data-image tag
         console.log('failed to receive data\n', jqxhr);
         if (jqxhr.status == 404) {
           $('#tradeListDiv').empty();
+          $('#tradesTemplateMainDiv').empty();
         }
       };
 
@@ -783,13 +723,19 @@ Tip 2: you can also add an image using data-image tag
           seriesBarDistance: 5,
           axisX            : {
             labelInterpolationFnc: function (value) {
-              return value[0];
+              return value;
             }
           }
         }]
       ];
 
-      Chartist.Bar(targetId, data, options, responsiveOptions);
+      Chartist.Bar(targetId, data, options, responsiveOptions).on('draw', function(data) {
+        if(data.type === 'bar') {
+          data.element.attr({
+            style: 'stroke-width: 30px'
+          });
+        }
+      });;
     },
     /**
      * totalCount, startPage, endPage, pages array, hasPrev, hasNext 생성
