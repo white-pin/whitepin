@@ -158,19 +158,9 @@ Tip 2: you can also add an image using data-image tag
               </div>
               <div class="card-body" style="padding-top: 0px;">
                 <!-- 거래 및 평가내역 -->
-                <div id="tradeListDiv">
-                  <div class="row" style="padding-left: 20px;">
-                    <div class="col-md-4">
-
-                    </div>
-                    <div class="col-md-4">
-                      이미지 추가 + 괜찮은 거래상대 입니다.
-                    </div>
-                  </div>
-                  <br />
-                  <div id="tradesTemplateDiv">
-                  </div>
-                </div><!-- ./거래 및 평가내역 -->
+                <div id="tradesTemplateDiv">
+                </div>
+                <!-- ./거래 및 평가내역 -->
               </div>
             </div>
           </div>
@@ -266,7 +256,7 @@ Tip 2: you can also add an image using data-image tag
     </div>
 
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="card card-user">
         <div class="card-body">
           <div class="col">
@@ -315,6 +305,22 @@ Tip 2: you can also add an image using data-image tag
         </div>
       </div>
     </div>
+
+    <div class="col-md-2">
+      <div class="card card-user">
+        <div class="card-body">
+          <div class="author" style="margin-top: 0px;">
+            <a href="#">
+              <img class="avatar border-gray" src="../img/{{state.img}}" alt="...">
+            </a>
+            <p class="description {{state.cls}}">
+              {{state.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </script>
 
@@ -546,6 +552,37 @@ Tip 2: you can also add an image using data-image tag
         path = apiClient.path.evaluation.avg + '/' + $self.addr;
         successHandler = function (data) {
           console.log(data);
+          if(data.evaluationSum.totalAverage <= 1){
+            data.state = {
+              img : 'state_1.png'
+              , cls : 'text-danger'
+              , description : '위험! 거래에 실패 할 가능성이 높습니다.'
+            };
+          } else if(data.evaluationSum.totalAverage <= 2){
+            data.state = {
+              img : 'state_2.png'
+              , cls : 'text-warning'
+              , description : '되도록 거래하지 않는 것을 권장합니다. 한번 더 고민해보세요.'
+            };
+          } else if(data.evaluationSum.totalAverage <= 3){
+            data.state = {
+              img : 'state_3.png'
+              , cls : 'text-success'
+              , description : '거래시 조금 주의가 필요합니다.'
+            };
+          } else if(data.evaluationSum.totalAverage <= 4){
+            data.state = {
+              img : 'state_4.png'
+              , cls : 'text-info'
+              , description : '괜찮은 거래상대 입니다.'
+            };
+          } else if(data.evaluationSum.totalAverage <= 5){
+            data.state = {
+              img : 'state_5.png'
+              , cls : 'text-primary'
+              , description : '안심하고 거래하세요.'
+            };
+          }
           handlebarsManager.printTemplate(data, $('#summaryTemplateDiv'),
             $('#summaryTemplate'), 'html', null, null, true);
 
@@ -703,7 +740,7 @@ Tip 2: you can also add an image using data-image tag
     drawBarChart          : function (targetId, data) {
       // https://gionkunz.github.io/chartist-js/api-documentation.html
       let options = {
-        seriesBarDistance: 220,
+        seriesBarDistance: 110,
         axisX            : {
           showGrid: false
         },
