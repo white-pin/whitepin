@@ -50,9 +50,32 @@ logging:
     com.github.whitepin.server.api.controller: DEBUG
 
 ---
-# dev profile
+# local profile
 spring:
   profiles: dev
+  datasource:
+    url: jdbc:mariadb://192.168.7.30:3306/whitepin
+    username: whitepin
+    password: whitepin1234
+    initialization-mode: always
+    data: classpath:data.sql
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        generate_statistics: false
+        show_sql: true
+        use_sql_comments: true
 
 server:
-  port: 13030
+  port: 3030
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    com.github.whitepin.server.api.controller: DEBUG

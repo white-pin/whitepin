@@ -1,7 +1,14 @@
 package com.github.whitepin.frontend;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +20,24 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootApplication
 public class FrontendApplication {
 
+    @Value("${api.end-points}")
+    private String apiEndPoints;
+
+    private Map<String, Object> apiInfo;
+
     public static void main(String[] args) {
         SpringApplication.run(FrontendApplication.class, args);
+    }
+
+    @PostConstruct
+    private void setUp() {
+        apiInfo = new HashMap<>();
+        apiInfo.put("endpoints", apiEndPoints);
+    }
+
+    @GetMapping(value = "/api-info", produces = "application/json")
+    public ResponseEntity<Map<String, Object>> getApiInfo() {
+        return ResponseEntity.ok(apiInfo);
     }
 
     @GetMapping("/")
