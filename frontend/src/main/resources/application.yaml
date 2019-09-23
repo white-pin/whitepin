@@ -1,3 +1,4 @@
+# common properties
 server:
   port: 8080
 
@@ -11,5 +12,18 @@ spring:
   thymeleaf:
     cache: false
 
+
+---
+# local profile
+spring:
+  profiles: local
 api:
-  end-points: http://192.168.7.31:51040
+  end-points: http://localhost:3030
+
+
+---
+# local profile
+spring:
+  profiles: dev
+api:
+  end-points: http://121.141.157.230:51040

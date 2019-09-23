@@ -2,7 +2,7 @@
  * Api client
  */
 var apiClient = (function () {
-  const endPoints = "http://localhost:3030";
+  let endPoints = "";
   const path = {
     identification: "/mock/identification",
     join          : "/join",
@@ -18,6 +18,31 @@ var apiClient = (function () {
   };
 
   var request = function (path, method, data, successHandler, errorHandler) {
+    console.log('request..:', apiClient.endPoints);
+    if (validator.isEmpty(endPoints)) {
+      $.ajax({
+        url        : '/api-info',
+        headers    : {
+          dataType: 'json'
+        },
+        contentType: "application/json",
+        type       : 'GET',
+        success    : function (apiInfo) {
+          console.log('apiInfo:', apiInfo, ', apiClient.endPoints: ', apiClient.endPoints);
+          endPoints = apiInfo.endpoints;
+          requestInternal(path, method, data, successHandler, errorHandler);
+        }
+        , error    : function (jqxhr) {
+          alert("시스템 오류가 발생하였습니다. 잠시 후 시도해주세요.");
+          console.log(jqxhr);
+        }
+      });
+    } else {
+      requestInternal(path, method, data, successHandler, errorHandler);
+    }
+  };
+
+  var requestInternal = function (path, method, data, successHandler, errorHandler) {
     $.ajax({
       url         : endPoints + path,
       headers     : {
