@@ -36,14 +36,16 @@
     .btn {
       cursor: pointer;
     }
+
     caption {
-      color: #868e96;
+      color: #868E96;
       text-align: left;
       caption-side: top;
       padding-left: 10px;
       padding-bottom: 0px;
     }
-    .table>thead>tr>th {
+
+    .table > thead > tr > th {
       border-bottom-width: 1px;
       font-size: 12px;
       text-transform: uppercase;
@@ -59,8 +61,8 @@
 </head>
 <body>
 <div class="wrapper">
-  <!--<div class="sidebar" data-image="assets/img/sidebar-5.jpg">-->
-  <div class="sidebar" data-color="purple">
+  <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
+  <!--<div class="sidebar" data-color="purple">-->
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -80,7 +82,7 @@ Tip 2: you can also add an image using data-image tag
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/join" id="joinOrEdit">
+          <a class="nav-link" href="javascript:void(0);" id="joinOrEdit">
             <i class="nc-icon nc-circle-09"></i>
             <p>화이트핀 발급/관리</p>
           </a>
@@ -118,7 +120,6 @@ Tip 2: you can also add an image using data-image tag
     </nav>
     <!-- End Navbar -->
     <div class="content">
-
 
 
       <div class="container-fluid">
@@ -512,6 +513,14 @@ Tip 2: you can also add an image using data-image tag
         self.location = "/account/" + loginInfo.userToken;
       });
 
+      $('#joinOrEdit').on('click', function () {
+        if (accountManager.isSignedIn()) {
+          self.location = '/accounts/edit';
+        } else {
+          self.location = '/join';
+        }
+      });
+
       // 상단 평균 점수 갱신
       $self.updateScoreSummary();
       // 하단 거래 및 평가내역 갱신
@@ -526,12 +535,6 @@ Tip 2: you can also add an image using data-image tag
         let l = document.createElement("a");
         l.href = window.location.href;
         $self.addr = l.pathname.substring('/account/'.length);
-      }
-
-      if (accountManager.isSignedIn()) {
-        $('#joinOrEdit').attr('href', '/accounts/edit');
-        let loginInfo = accountManager.getLoginInfo();
-        $self.isMyPage = $self.addr === loginInfo.userToken;
       }
 
       let path;
@@ -552,35 +555,35 @@ Tip 2: you can also add an image using data-image tag
         path = apiClient.path.evaluation.avg + '/' + $self.addr;
         successHandler = function (data) {
           console.log(data);
-          if(data.evaluationSum.totalAverage <= 1){
+          if (data.evaluationSum.totalAverage <= 1) {
             data.state = {
-              img : 'state_1.png'
-              , cls : 'text-danger'
-              , description : '위험! 거래에 실패 할 가능성이 높습니다.'
+              img          : 'state_1.png'
+              , cls        : 'text-danger'
+              , description: '위험! 거래에 실패 할 가능성이 높습니다.'
             };
-          } else if(data.evaluationSum.totalAverage <= 2){
+          } else if (data.evaluationSum.totalAverage <= 2) {
             data.state = {
-              img : 'state_2.png'
-              , cls : 'text-warning'
-              , description : '되도록 거래하지 않는 것을 권장합니다. 한번 더 고민해보세요.'
+              img          : 'state_2.png'
+              , cls        : 'text-warning'
+              , description: '되도록 거래하지 않는 것을 권장합니다. 한번 더 고민해보세요.'
             };
-          } else if(data.evaluationSum.totalAverage <= 3){
+          } else if (data.evaluationSum.totalAverage <= 3) {
             data.state = {
-              img : 'state_3.png'
-              , cls : 'text-success'
-              , description : '거래시 조금 주의가 필요합니다.'
+              img          : 'state_3.png'
+              , cls        : 'text-success'
+              , description: '거래시 조금 주의가 필요합니다.'
             };
-          } else if(data.evaluationSum.totalAverage <= 4){
+          } else if (data.evaluationSum.totalAverage <= 4) {
             data.state = {
-              img : 'state_4.png'
-              , cls : 'text-info'
-              , description : '괜찮은 거래상대 입니다.'
+              img          : 'state_4.png'
+              , cls        : 'text-info'
+              , description: '괜찮은 거래상대 입니다.'
             };
-          } else if(data.evaluationSum.totalAverage <= 5){
+          } else if (data.evaluationSum.totalAverage <= 5) {
             data.state = {
-              img : 'state_5.png'
-              , cls : 'text-primary'
-              , description : '안심하고 거래하세요.'
+              img          : 'state_5.png'
+              , cls        : 'text-primary'
+              , description: '안심하고 거래하세요.'
             };
           }
           handlebarsManager.printTemplate(data, $('#summaryTemplateDiv'),
@@ -766,13 +769,14 @@ Tip 2: you can also add an image using data-image tag
         }]
       ];
 
-      Chartist.Bar(targetId, data, options, responsiveOptions).on('draw', function(data) {
-        if(data.type === 'bar') {
+      Chartist.Bar(targetId, data, options, responsiveOptions).on('draw', function (data) {
+        if (data.type === 'bar') {
           data.element.attr({
             style: 'stroke-width: 30px'
           });
         }
-      });;
+      });
+      ;
     },
     /**
      * totalCount, startPage, endPage, pages array, hasPrev, hasNext 생성

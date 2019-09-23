@@ -49,8 +49,8 @@
 </head>
 <body>
 <div class="wrapper">
-  <!--<div class="sidebar" data-image="assets/img/sidebar-5.jpg">-->
-  <div class="sidebar" data-color="purple">
+  <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
+  <!--<div class="sidebar" data-color="purple">-->
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -70,7 +70,7 @@ Tip 2: you can also add an image using data-image tag
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/accounts/edit">
+          <a class="nav-link" href="javascript:void(0);" id="joinOrEdit">
             <i class="nc-icon nc-circle-09"></i>
             <p>화이트핀 발급/관리</p>
           </a>
@@ -239,6 +239,14 @@ Tip 2: you can also add an image using data-image tag
       }
 
       self.location = "/account/" + addr;
+    });
+
+    $('#joinOrEdit').on('click', function () {
+      if (accountManager.isSignedIn()) {
+        self.location = '/accounts/edit';
+      } else {
+        self.location = '/join';
+      }
     });
   });
 </script>

@@ -35,8 +35,8 @@
 </head>
 <body>
 <div class="wrapper">
-  <!--<div class="sidebar" data-image="assets/img/sidebar-5.jpg">-->
-  <div class="sidebar" data-color="purple">
+  <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
+  <!--<div class="sidebar" data-color="purple">-->
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -56,7 +56,7 @@ Tip 2: you can also add an image using data-image tag
           </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/accounts/edit">
+          <a class="nav-link" href="javascript:void(0);" id="joinOrEdit">
             <i class="nc-icon nc-circle-09"></i>
             <p>화이트핀 발급/관리</p>
           </a>
@@ -99,11 +99,13 @@ Tip 2: you can also add an image using data-image tag
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                  <h4 class="card-title">화이트핀 발급/관리 <span id="createDate"></span></h4>
+                <h4 class="card-title">화이트핀 발급/관리 <span id="createDate"></span></h4>
                 <div class="card-category legend">
-                  <i class="fa fa-circle text-info"></i> 연결 서비스 <span class="text-info" id="connectedServiceCount">0건</span>
+                  <i class="fa fa-circle text-info"></i> 연결 서비스 <span class="text-info"
+                                                                      id="connectedServiceCount">0건</span>
                   <i class="fa fa-circle text-danger"></i> 거래내역 <span class="text-danger" id="transactionCount">0건</span>
-                  <i class="fa fa-circle text-warning"></i> 내가 받은 평가 <span class="text-warning" id="evaluationReceivedCount">0건</span>
+                  <i class="fa fa-circle text-warning"></i> 내가 받은 평가 <span class="text-warning"
+                                                                           id="evaluationReceivedCount">0건</span>
                   <!--<i class="fa fa-circle text-success"></i> 내가 남긴 평가 <span class="text-success" id="myLeftEvaluationCount">0건</span>-->
                 </div>
               </div>
@@ -135,11 +137,11 @@ Tip 2: you can also add an image using data-image tag
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
                         <label>휴대폰 번호</label>
-                        <input type="text" class="form-control" disabled="" id="phoneNumber"  value="">
+                        <input type="text" class="form-control" disabled="" id="phoneNumber" value="">
                       </div>
                     </div>
                   </div>
-<!--                  <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>-->
+                  <!--                  <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>-->
                   <div class="clearfix"></div>
                 </form>
               </div>
@@ -209,78 +211,86 @@ Tip 2: you can also add an image using data-image tag
 
 <script type="text/javascript">
   window.userInfo = {
-    init               : function () {
-        accountManager.updateLoginTemplate();
+    init           : function () {
+      accountManager.updateLoginTemplate();
 
-        /**
-         * form enter 처리
-         */
-        $('input[type="text"]').keydown(function (e) {
-            if (e.keyCode !== 13) {
-                return;
-            }
+      /**
+       * form enter 처리
+       */
+      $('input[type="text"]').keydown(function (e) {
+        if (e.keyCode !== 13) {
+          return;
+        }
 
-            if (e.target.id == 'searchInput') {
-                $('#btnSearch').trigger('click');
-            } else {
-                e.preventDefault();
-            }
-        });
+        if (e.target.id == 'searchInput') {
+          $('#btnSearch').trigger('click');
+        } else {
+          e.preventDefault();
+        }
+      });
 
-        $('#logout').on('click', function () {
-            accountManager.requestSignOut();
-        });
+      $('#logout').on('click', function () {
+        accountManager.requestSignOut();
+      });
 
-        $('#mypage').on('click', function () {
-            var loginInfo = accountManager.getLoginInfo();
-            self.location = "/account/" + loginInfo.userToken;
-        });
+      $('#mypage').on('click', function () {
+        var loginInfo = accountManager.getLoginInfo();
+        self.location = "/account/" + loginInfo.userToken;
+      });
 
-        $('#btnSearch').on('click', function () {
-            var addr = $('#searchInput').val();
-            // if (addr === undefined || addr.length !== 64) {
-            if (addr === undefined || addr.length === '') {
-                alert('올바른 아이디를 입력해주세요.');
-                return;
-            }
+      $('#btnSearch').on('click', function () {
+        var addr = $('#searchInput').val();
+        // if (addr === undefined || addr.length !== 64) {
+        if (addr === undefined || addr.length === '') {
+          alert('올바른 아이디를 입력해주세요.');
+          return;
+        }
 
-            self.location = "/account/" + addr;
-        });
+        self.location = "/account/" + addr;
+      });
 
-        this.getUserInfo();
+      $('#joinOrEdit').on('click', function () {
+        if (accountManager.isSignedIn()) {
+          self.location = '/accounts/edit';
+        } else {
+          self.location = '/join';
+        }
+      });
+
+      this.getUserInfo();
     }
-    , getUserInfo: function (){
-        var $timeConverter = this.timeConverter;
-        var path = apiClient.path.user.info;
-        var type = 'GET';
+    , getUserInfo  : function () {
+      var $timeConverter = this.timeConverter;
+      var path = apiClient.path.user.info;
+      var type = 'GET';
 
-        var successHandler = function (response) {
-          response.userToken = '0x' + response.userToken;
-            response.createDate = '[' + $timeConverter(response.createDate) + ' 발급]';
-            for(var key in response){
-                var $tag = $('#'+key);
-                var $tagType = $tag.prop('nodeName');
-                if(key == 'createDate'){
-                    $tag.text(response[key]);
-                } else if($tagType == 'INPUT'){
-                    $tag.val(response[key]);
-                } else if($tagType == 'SPAN'){
-                    $tag.text(response[key]+'건');
-                }
-            }
-            console.log(response);
-        };
+      var successHandler = function (response) {
+        response.userToken = '0x' + response.userToken;
+        response.createDate = '[' + $timeConverter(response.createDate) + ' 발급]';
+        for (var key in response) {
+          var $tag = $('#' + key);
+          var $tagType = $tag.prop('nodeName');
+          if (key == 'createDate') {
+            $tag.text(response[key]);
+          } else if ($tagType == 'INPUT') {
+            $tag.val(response[key]);
+          } else if ($tagType == 'SPAN') {
+            $tag.text(response[key] + '건');
+          }
+        }
+        console.log(response);
+      };
 
-        var errorHandler = function (jqxhr) {
-            console.log(jqxhr);
-        };
+      var errorHandler = function (jqxhr) {
+        console.log(jqxhr);
+      };
 
-        apiClient.request(path, type, null, successHandler, errorHandler);
+      apiClient.request(path, type, null, successHandler, errorHandler);
     }
-    , timeConverter: function(UNIX_timestamp){
-        var date = new Date(UNIX_timestamp);
-        var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
-        return date.getFullYear() + '-' + months[date.getMonth()] + '-' + date.getDate();
+    , timeConverter: function (UNIX_timestamp) {
+      var date = new Date(UNIX_timestamp);
+      var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+      return date.getFullYear() + '-' + months[date.getMonth()] + '-' + date.getDate();
     }
   };
 

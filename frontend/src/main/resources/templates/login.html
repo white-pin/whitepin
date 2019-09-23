@@ -40,8 +40,8 @@
 </head>
 <body>
 <div class="wrapper">
-  <!--<div class="sidebar" data-image="assets/img/sidebar-5.jpg">-->
-  <div class="sidebar" data-color="purple">
+  <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
+  <!--<div class="sidebar" data-color="purple">-->
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -149,8 +149,7 @@ Tip 2: you can also add an image using data-image tag
                 </div>
 
                 <div class="row">
-                  <div class="col-md-3"></div>
-                  <div class="col-md-6">
+                  <div class="col-md-12 text-center">
                     <a href="">
                       <span class="no-icon">아이디찾기</span>
                     </a>
@@ -163,7 +162,6 @@ Tip 2: you can also add an image using data-image tag
                       <span class="no-icon">신규 화이트핀 발급</span>
                     </a>
                   </div>
-                  <div class="col-md-3"></div>
                 </div>
               </div>
             </div>
@@ -212,22 +210,22 @@ Tip 2: you can also add an image using data-image tag
 
     init: function () {
       console.log('initialize login..');
-      var self = window.login;
+      let $self = window.login;
 
       if (accountManager.isSignedIn()) {
         console.log('already signed in');
-        self.location = "/accounts/edit";
+        $self.location = "/accounts/edit";
       }
 
       $('#btnLogin').on('click', function () {
-        var email = self.$email.val();
+        var email = $self.$email.val();
 
         if (!validator.isValidEmail(email)) {
           alert('유효하지 않은 아이디 입니다.');
           return;
         }
 
-        var password = self.$password.val();
+        var password = $self.$password.val();
         if (!validator.isValidPassword(password)) {
           alert('유효하지 않은 비밀번호 입니다.');
           return;
@@ -252,6 +250,7 @@ Tip 2: you can also add an image using data-image tag
       });
 
       $('#btnSearch').on('click', function () {
+        console.log('btnSearch occur..');
         var addr = $('#searchInput').val();
         // if (addr === undefined || addr.length !== 64) {
         if (addr === undefined || addr.length === '') {

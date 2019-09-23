@@ -189,9 +189,32 @@ var accountManager = (function () {
   };
 
   var requestSignIn = function (email, password) {
-    var authToken = 'Basic ' + btoa(email + ':' + password);
-    console.log('authToken :: ', authToken);
+    if (validator.isEmpty(apiClient.endPoints)) {
+      $.ajax({
+        url        : '/api-info',
+        headers    : {
+          dataType: 'json'
+        },
+        contentType: "application/json",
+        type       : 'GET',
+        success    : function (apiInfo) {
+          console.log('apiInfo:', apiInfo, ', apiClient.endPoints: ', apiClient.endPoints);
+          apiClient.endPoints = apiInfo.endpoints;
+          requestSignInInternal(email, password);
+        }
+        , error    : function (jqxhr) {
+          alert("시스템 오류가 발생하였습니다. 잠시 후 시도해주세요.");
+          console.log(jqxhr);
+        }
+      });
+    } else {
+      requestSignInInternal(email, password);
+    }
 
+  };
+
+  var requestSignInInternal = function (email, password) {
+    let authToken = 'Basic ' + btoa(email + ':' + password);
     $.ajax({
       url        : apiClient.endPoints + apiClient.path.user.info,
       headers    : {
