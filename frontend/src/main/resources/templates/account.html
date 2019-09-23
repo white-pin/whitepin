@@ -61,7 +61,7 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
+  <div class="sidebar" data-image="/assets/img/sidebar-5.jpg">
   <!--<div class="sidebar" data-color="purple">-->
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
@@ -535,6 +535,11 @@ Tip 2: you can also add an image using data-image tag
         let l = document.createElement("a");
         l.href = window.location.href;
         $self.addr = l.pathname.substring('/account/'.length);
+      }
+
+      if (accountManager.isSignedIn()) {
+        let loginInfo = accountManager.getLoginInfo();
+        $self.isMyPage = $self.addr === loginInfo.userToken;
       }
 
       let path;
