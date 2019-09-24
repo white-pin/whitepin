@@ -206,7 +206,7 @@ Tip 2: you can also add an image using data-image tag
                           <div class="row">
                             <div class="col-md-6">
                               누적 사용자 <br />
-                              <h1><span id="userCount">371,231명</span></h1>
+                              <h1><span id="userCount"></span></h1>
                             </div>
                             <div class="col-md-6">
                               누적 거래내역 <br />
@@ -343,8 +343,11 @@ Tip 2: you can also add an image using data-image tag
       var type = 'GET';
 
       var successHandler = function (response) {
-//         $('#userCount').text(response.user.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "명");
-//         $('#transactionCount').text(response.transaction.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "건");
+		var userCount = response.user + 371231;
+		var trasactionCount = response.transaction + 956789;
+		
+        $('#userCount').text(userCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "명");
+        $('#transactionCount').text(trasactionCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "건");
       };
 
       var errorHandler = function (jqxhr) {
