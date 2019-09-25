@@ -50,7 +50,7 @@
 <body>
 <div class="wrapper">
   <div class="sidebar" data-image="assets/img/sidebar-5.jpg">
-  <!--<div class="sidebar" data-color="purple">-->
+    <!--<div class="sidebar" data-color="purple">-->
     <!--
 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -446,6 +446,9 @@ Tip 2: you can also add an image using data-image tag
   window.join = {
     init               : function () {
       console.log('initialize join..');
+      if (accountManager.isSignedIn()) {
+        self.location = '/accounts/edit';
+      }
 
       /**
        * form enter 처리
@@ -531,8 +534,8 @@ Tip 2: you can also add an image using data-image tag
     },
     // returns join data or null if invalid
     getJoinData        : function () {
-      if(!$('#chkAgree1').prop('checked')
-         || !$('#chkAgree2').prop('checked')) {
+      if (!$('#chkAgree1').prop('checked')
+          || !$('#chkAgree2').prop('checked')) {
         alert('화이트핀 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.');
         return;
       }
